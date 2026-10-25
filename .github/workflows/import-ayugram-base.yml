@@ -24,19 +24,21 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Clone AyuGram rewrite branch with submodules
+      - name: Clone AyuGram rewrite branch
         shell: bash
         run: |
           set -euo pipefail
-          git clone --depth 1 --branch rewrite --recurse-submodules --shallow-submodules https://github.com/AyuGram/AyuGram4A.git /tmp/ayugram
-          git -C /tmp/ayugram submodule status --recursive || true
+          # AyuGram's only submodule points to a separate proprietary repository
+          # that this workflow may not have permission to clone. Import the full
+          # main repository first; keep .gitmodules so the dependency is explicit.
+          git clone --depth 1 --branch rewrite https://github.com/AyuGram/AyuGram4A.git /tmp/ayugram
+          test -f /tmp/ayugram/.gitmodules
+          git -C /tmp/ayugram status --short
 
       - name: Replace project tree with full AyuGram source
         shell: bash
         run: |
           set -euo pipefail
-          # Keep the target repository's .git metadata and the two audit/port-plan documents.
-          # Preserve this workflow so later stages remain runnable.
           rsync -a --delete \
             --exclude='/.git/' \
             --exclude='/SECURITY_AUDIT_STAGE1.md' \
@@ -62,6 +64,6 @@ jobs:
       - name: Report baseline
         shell: bash
         run: |
-          echo "Imported AyuGram rewrite into SealGram2."
-          echo "This stage intentionally does not yet remove telemetry or port SealGram customizations."
-          echo "Next stage: audit and selectively disable/remove privacy-sensitive telemetry and upstream endpoints."
+          echo "Imported AyuGram rewrite source into SealGram2."
+          echo "AyuGram's proprietary submodule is not bundled; it must be reviewed separately."
+          echo "This stage does not yet remove telemetry or port SealGram customizations."
