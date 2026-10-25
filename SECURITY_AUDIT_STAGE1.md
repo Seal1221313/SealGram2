@@ -54,3 +54,20 @@ SealGram-clean already has its own `BuildVars.java`, package/build configuration
 3. Port in small commits, retaining copyright/license notices and required upstream attributions.
 4. Review permissions, manifest merge changes, hard-coded endpoints, telemetry, and secrets in every stage.
 5. Run the repository's Android CI build and report the exact run result. No build has been run as part of this preliminary audit.
+
+
+### 6. Device identifier is a stable identifier when sync is enabled
+
+File: `TMessagesProj/src/main/java/com/radolyn/ayugram/AyuUtils.java`
+
+`getDeviceIdentifier()` reads Android's `ANDROID_ID`. The sync registration request sends that identifier together with the device manufacturer/model to the configured sync service. Since sync is disabled by default, this is conditional behavior, but it is still sensitive tracking-like data and should be explicitly disclosed and minimized if the feature is ported.
+
+### 7. Update checker fetches release metadata and APK links from GitHub
+
+File: `TMessagesProj/src/main/java/com/exteragram/messenger/utils/UpdaterUtils.java`
+
+The updater requests the latest release metadata from a GitHub repository selected through AyuGram constants and can download an APK from the release asset URL. This is a recognizable update feature, not evidence of malware on its own. Do not reuse AyuGram's update destination for SealGram2; any future updater must point to the maintainer-controlled project, show the destination clearly, and verify APK signing identity before installation. A full review of download/install flow is still required.
+
+## Additional review result
+
+The examined files did not provide sufficient evidence to label the inspected code as malware. The actionable issues so far are privacy/ownership risks (diagnostic analytics, stable device identifier used for sync, upstream Firebase configuration, and upstream update destination), plus the unreviewed proprietary submodule. These are reasons to exclude or isolate those integrations by default until they are deliberately configured—not grounds to delete unrelated features.
