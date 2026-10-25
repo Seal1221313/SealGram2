@@ -47,12 +47,12 @@ jobs:
             echo "MAPS_V2_API=${MAPS_KEY}"
           } > API_KEYS
 
-      - name: Build arm64 debug
+      - name: Build debug
         run: |
           chmod +x gradlew
-          ./gradlew --no-daemon --stacktrace :TMessagesProj:assembleArm64Debug
+          ./gradlew --no-daemon --stacktrace :TMessagesProj:assembleDebug
 
       - uses: actions/upload-artifact@v4
         with:
-          name: sealgram-arm64-debug
+          name: sealgram-debug
           path: TMessagesProj/build/outputs/apk/**/*.apk
