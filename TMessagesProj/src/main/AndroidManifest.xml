@@ -133,11 +133,6 @@
         android:theme="@style/Theme.TMessages.Start"
         android:usesCleartextTraffic="false"
         tools:replace="android:supportsRtl">
-        <!-- Privacy: disable Firebase analytics and crash-report collection before SDK startup. -->
-        <meta-data android:name="firebase_analytics_collection_enabled" android:value="false" />
-        <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
-        <meta-data android:name="firebase_crashlytics_collection_deactivated" android:value="true" />
-
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/MAPS_V2_API" />
