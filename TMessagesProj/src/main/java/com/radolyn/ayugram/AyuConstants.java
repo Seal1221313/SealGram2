@@ -45,12 +45,12 @@ public class AyuConstants {
     public static final int AYUSYNC_REGISTER_STATUS_CODE_CHANGED = 6973;
 
     public static String DEFAULT_DELETED_MARK = "🧹";
-    public static String DEFAULT_AYUSYNC_SERVER = BuildVars.isBetaApp() ? "ayusync-dev.radolyn.com:5000" : "ayusync.cloud";
+    public static String DEFAULT_AYUSYNC_SERVER = "localhost";
 
     public static String AYU_DATABASE = "ayu-data";
 
-    public static String APP_GITHUB = "AyuGram/AyuGram4A";
-    public static String APP_NAME = "AyuGram";
+    public static String APP_GITHUB = "Seal1221313/SealGram2";
+    public static String APP_NAME = "SealGram2";
 
     public static String BUILD_STORE_PACKAGE = "com.android.vending";
     public static String BUILD_ORIGINAL_PACKAGE = "org.telegram.messenger";
