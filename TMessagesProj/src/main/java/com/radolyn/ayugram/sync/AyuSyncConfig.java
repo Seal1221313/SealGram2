@@ -13,34 +13,34 @@ import com.radolyn.ayugram.AyuConfig;
 
 public class AyuSyncConfig {
     private static String getWebSocketProtocol() {
-        return AyuConfig.useSecureConnection ? "wss://" : "ws://";
+        return "ws://";
     }
 
     private static String getHTTPProtocol() {
-        return AyuConfig.useSecureConnection ? "https://" : "http://";
+        return "http://";
     }
 
     public static String getWebSocketURL() {
-        return getWebSocketProtocol() + AyuConfig.getSyncServerURL() + "/sync/ws/v1";
+        return "ws://127.0.0.1:1/disabled";
     }
 
     public static String getUserDataURL() {
-        return getHTTPProtocol() + AyuConfig.getSyncServerURL() + "/user/v1";
+        return "http://127.0.0.1:1/disabled";
     }
 
     public static String getRegisterDeviceURL() {
-        return getHTTPProtocol() + AyuConfig.getSyncServerURL() + "/sync/register/v1";
+        return "http://127.0.0.1:1/disabled";
     }
 
     public static String getForceSyncURL() {
-        return getHTTPProtocol() + AyuConfig.getSyncServerURL() + "/sync/force/v1";
+        return "http://127.0.0.1:1/disabled";
     }
 
     public static String getToken() {
-        return AyuConfig.getSyncServerToken();
+        return "";
     }
 
     public static String getProfileURL() {
-        return getHTTPProtocol() + AyuConfig.getSyncServerURL() + "/ui/profile?token=" + AyuConfig.getSyncServerToken();
+        return "http://127.0.0.1:1/disabled";
     }
 }
