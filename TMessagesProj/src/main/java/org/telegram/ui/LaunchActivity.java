@@ -974,8 +974,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             });
         }
 
-        if (ExteraConfig.checkUpdatesOnLaunch)
-            UpdaterUtils.checkUpdates(actionBarLayout.getFragmentStack().size() > 0 ? actionBarLayout.getFragmentStack().get(0) : layersActionBarLayout.getFragmentStack().get(0), false);
+        // Privacy: do not contact the external release API automatically at app launch.
+        // Users can still check for updates manually from the updater screen.
 
         BackupAgent.requestBackup(this);
 
