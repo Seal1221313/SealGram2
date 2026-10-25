@@ -36,9 +36,6 @@ import androidx.multidex.MultiDex;
 
 import com.exteragram.messenger.ExteraConfig;
 import com.exteragram.messenger.camera.CameraXUtils;
-import com.exteragram.messenger.utils.CrashlyticsUtils;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.radolyn.ayugram.AyuConfig;
 
 import com.radolyn.ayugram.sync.AyuSyncController;
@@ -303,7 +300,6 @@ public class ApplicationLoader extends Application {
         ProxyRotationController.init();
 
         ApplicationLoader app = (ApplicationLoader) ApplicationLoader.applicationContext;
-        app.initFirebase();
     }
 
     public static void startPushService() {
@@ -356,28 +352,6 @@ public class ApplicationLoader extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private static FirebaseAnalytics firebaseAnalytics;
-    private static FirebaseCrashlytics firebaseCrashlytics;
-
-    private void initFirebase() {
-        AndroidUtilities.runOnUIThread(() -> {
-            firebaseAnalytics = FirebaseAnalytics.getInstance(this);
-            firebaseCrashlytics = FirebaseCrashlytics.getInstance();
-            // Privacy hardening: do not upload analytics events or crash reports.
-            // Firebase Messaging remains available for Telegram push notifications.
-            firebaseAnalytics.setAnalyticsCollectionEnabled(false);
-            firebaseCrashlytics.setCrashlyticsCollectionEnabled(false);
-        });
-    }
-
-    public static FirebaseAnalytics getFirebaseAnalytics() {
-        return firebaseAnalytics;
-    }
-
-    public static FirebaseCrashlytics getFirebaseCrashlytics() {
-        return firebaseCrashlytics;
     }
 
     private void initPushServices() {
