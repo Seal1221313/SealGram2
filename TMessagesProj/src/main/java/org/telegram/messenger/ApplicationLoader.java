@@ -365,9 +365,10 @@ public class ApplicationLoader extends Application {
         AndroidUtilities.runOnUIThread(() -> {
             firebaseAnalytics = FirebaseAnalytics.getInstance(this);
             firebaseCrashlytics = FirebaseCrashlytics.getInstance();
-            firebaseAnalytics.setAnalyticsCollectionEnabled(ExteraConfig.useGoogleAnalytics);
-            firebaseCrashlytics.setCrashlyticsCollectionEnabled(ExteraConfig.useGoogleCrashlytics);
-            CrashlyticsUtils.logEvents(applicationContext);
+            // Privacy hardening: do not upload analytics events or crash reports.
+            // Firebase Messaging remains available for Telegram push notifications.
+            firebaseAnalytics.setAnalyticsCollectionEnabled(false);
+            firebaseCrashlytics.setCrashlyticsCollectionEnabled(false);
         });
     }
 
