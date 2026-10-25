@@ -18,7 +18,7 @@ Date: 2026-10-25
 
 - The former custom Analytics `stats` event included Android/app versions, manufacturer/model, performance class, locale, cache path, refresh rate/display dimensions, Play Services availability, and beta/debug status. Its startup call and Firebase analytics/crash-report build integration have been removed/disabled.
 - AyuSync code can transmit a device name and device identifier during registration, plus account/dialog read-state information and an authorization token. The controller is now hard-disabled in the normal app flow.
-- The upstream Firebase configuration identified the AyuGram Firebase project and has already been removed from the current tree. No `google-services.json` exists at the repository root or `TMessagesProj/` path. Firebase Messaging wiring was removed in prior privacy changes, though the base manifest still contains a Firebase messaging action that should be checked against the merged manifest before claiming push code is fully absent.
+- The upstream Firebase configuration identified the AyuGram Firebase project and has already been removed from the current tree. No `google-services.json` exists at the repository root or `TMessagesProj/` path. Firebase Messaging wiring was removed in prior privacy changes, and the remaining Firebase messaging service declaration in the base manifest has now been removed.
 
 ## Functionality trade-offs
 
