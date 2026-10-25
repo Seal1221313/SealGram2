@@ -29,6 +29,10 @@ public class AyuSyncWebSocketClient extends WebSocketClient {
     }
 
     public static boolean create() {
+        // Privacy: AyuSync WebSocket networking is disabled in this fork.
+        nullifyInstance();
+        return false;
+        /*
         if (instance != null) {
             return true;
         }
@@ -53,6 +57,7 @@ public class AyuSyncWebSocketClient extends WebSocketClient {
         instance.connect();
 
         return true;
+        */
     }
 
     public static AyuSyncWebSocketClient getInstance() {
