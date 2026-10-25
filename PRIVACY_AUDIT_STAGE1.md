@@ -39,3 +39,5 @@ No Android build or clean-install network capture has been run after these commi
 - AyuSync removed entirely: `com.radolyn.ayugram.sync` package, `AyuSyncPreferencesActivity`, all hooks (ApplicationLoader, ConnectionsManager read-sync, settings rows), config getters and constants.
 - Removed device-identifier (ANDROID_ID) and device-name helpers that existed only for sync registration.
 - Removed Crashlytics/Analytics toggles and config fields from Other settings.
+- Removed leftover Google Analytics (AppMeasurement) services/receiver from the manifest.
+- Full sweep found no hidden modules: no dynamic code loading, no encoded strings/IPs in Java or native code; only network users are Telegram MTProto, DNS fallback (Google/Mozilla), GitHub update check, Google Translate on request, optional map tiles.
