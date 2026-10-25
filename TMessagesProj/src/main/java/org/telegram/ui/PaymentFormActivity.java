@@ -3024,7 +3024,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     private void initGooglePay(Context context) {
-        if (getParentActivity() == null) {
+        if (true) {
             return;
         }
         Wallet.WalletOptions walletOptions = new Wallet.WalletOptions.Builder()

@@ -57,18 +57,35 @@ jobs:
           set -o pipefail
           ./gradlew --no-daemon --stacktrace ${{ inputs.task }} 2>&1 | tee build.log
 
-      - name: Publish log on failure
-        if: failure()
+      - name: APK audit
+        if: always()
+        run: |
+          mkdir -p /tmp/a /tmp/l
+          APK=$(find TMessagesProj/build/outputs/apk -name "*.apk" | head -1)
+          if [ -z "$APK" ]; then echo "no apk" > /tmp/l/audit.txt; exit 0; fi
+          cd /tmp/a && unzip -qo "$GITHUB_WORKSPACE/$APK"
+          {
+            echo "== apk: $APK"; ls -l "$GITHUB_WORKSPACE/$APK"
+            echo "== permissions"; "$ANDROID_HOME/build-tools/33.0.1/aapt2" dump permissions "$GITHUB_WORKSPACE/$APK" | sort -u
+            echo "== urls in dex"; cat classes*.dex | strings -n 8 | grep -oE "https?://[A-Za-z0-9._~:/?#@!$&'*+,;=%-]+" | sort -u
+            echo "== urls in native"; for f in lib/*/*.so; do strings -n 8 "$f" | grep -oE "https?://[A-Za-z0-9._~:/?#@!$&'*+,;=%-]+" ; done | sort -u
+            echo "== ipv4 in native/dex"; (cat classes*.dex; cat lib/*/*.so) | strings -n 7 | grep -oE "\b[0-9]{1,3}(\.[0-9]{1,3}){3}\b" | sort -u
+            echo "== suspicious classes"; cat classes*.dex | strings -n 6 | grep -iE "firebase|crashlytics|appcenter|appsflyer|facebook|adjust|mixpanel|amplitude|sentry|appmetrica|ayugram\.one|exteragram\.app|DexClassLoader" | sort -u | head -80
+          } > /tmp/l/audit.txt 2>&1
+
+      - name: Publish log
+        if: always()
         run: |
           mkdir -p /tmp/l
           grep -nE "error:|FAILED|What went wrong|Execution failed|Could not|cannot find symbol|symbol:|location:|does not exist" -A2 build.log | head -c 150000 > /tmp/l/errors.txt || true
           tail -n 300 build.log > /tmp/l/tail.txt || true
+          touch /tmp/l/audit.txt
           git config user.name ci
           git config user.email ci@users.noreply.github.com
           git checkout --orphan ci-logs
           git rm -rf . -q
-          cp /tmp/l/errors.txt /tmp/l/tail.txt .
-          git add errors.txt tail.txt
+          cp /tmp/l/errors.txt /tmp/l/tail.txt /tmp/l/audit.txt .
+          git add errors.txt tail.txt audit.txt
           git commit -qm "build log"
           git push -f origin ci-logs
 
