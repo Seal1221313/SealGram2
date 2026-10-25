@@ -4,27 +4,36 @@ Date: 2026-10-25
 
 ## Changes applied
 
-- Firebase Analytics collection is disabled in the Android manifest and at runtime.
-- Firebase Crashlytics collection is disabled in the manifest and at runtime; Crashlytics collection is also deactivated.
-- The startup device/build statistics event from `CrashlyticsUtils.logEvents()` is no longer called.
-- The default preferences for Google Analytics and Crashlytics are now false.
-- Cleartext HTTP traffic is disabled in the Android manifest. AyuSync now defaults to TLS (`wss://` / `https://`) for new installations.
+- Removed Firebase Analytics and Crashlytics initialization and their direct dependencies/plugins.
+- Deleted `CrashlyticsUtils.java`, which collected and submitted a `stats` event.
+- Removed the startup call that initialized analytics/crash reporting.
+- Removed explicit Firebase Remote Config and Firebase App Indexing dependencies; the project did not need these for the reviewed flows.
+- Disabled AyuSync at its controller entry point. The controller now always installs the no-op implementation and closes any existing AyuSync WebSocket rather than connecting to a sync server.
+- Changed the default AyuSync server value to `localhost` as a defensive fallback.
+- Changed the updater's GitHub repository from AyuGram to `Seal1221313/SealGram2`, so update checks no longer query AyuGram's releases endpoint.
+- Kept Firebase Messaging / the Google Services plugin because Telegram push notifications use them. The current `google-services.json` still references Firebase project `ayugram-c6a31`; this is a remaining upstream dependency, not evidence that private messages are being sold. Replacing/removing it without a project owned by this fork would disable or break FCM push notifications.
 
-## Confirmed data collection removed/disabled
+## Confirmed data transmission found
 
-The code previously sent a Firebase Analytics event named `stats` containing Android version, app version/code, manufacturer/model, performance class, locale, cache directory path, display size/refresh rate, Play Services availability, and beta/debug status. That event call is no longer made and Firebase analytics collection is explicitly disabled.
+AyuSync is a real optional synchronization feature, not proof of data sale. When enabled, its client code can send:
+- a device name and device identifier to the configured sync server during device registration;
+- a Telegram user ID and dialog read/unread state information through its synchronization protocol;
+- an authorization token and package/device headers on requests.
 
-Crashlytics report collection is explicitly disabled. The Firebase SDK dependencies remain in the project because Firebase Messaging is used by the push-notification provider; removing the entire Firebase stack could break push notifications.
+AyuSync was already configured disabled by default, but preferences could enable it. Its controller is now hard-disabled, so this client no longer initiates those sync requests through the normal application flow.
 
-## Remaining network activity that is not classified as analytics tracking
+## Analytics and crash reporting
 
-- Telegram protocol/API traffic is required for account login, messages, media, calls, and notifications.
-- Firebase Cloud Messaging may be used for push notifications; the app registers its push token through the Telegram push flow.
-- Google Translate receives the text a user explicitly asks the app to translate. Avoid using in-app translation for confidential text if you do not want it sent to Google's translation endpoint.
-- The AyuSync feature is disabled by default (`syncEnabled=false`) but remains in the source as an optional feature. If enabled, it contacts the configured sync server and sends a device identifier/package name and sync/account-related data. Review the AyuSync settings before enabling it.
-- The updater checks GitHub release metadata when its update-check feature runs. This exposes a normal request to GitHub (including network IP); this is not a unique device telemetry event. Update downloads should only be accepted from a trusted release source.
-- Maps, billing, authentication, language identification, and other Google Play services are present for their corresponding features; this audit did not remove feature dependencies without tracing every call site.
+The previous `CrashlyticsUtils.logEvents()` sent an event named `stats` containing Android/app versions, manufacturer/model, performance class, locale, cache path, screen refresh rate/dimensions, Play Services availability, and beta/debug status. That helper and direct Analytics/Crashlytics dependencies have been removed.
 
-## Not claimed
+## Remaining network activity
 
-This is a targeted source audit, not a proof that the compiled APK contains zero tracking or makes zero external requests. A full guarantee requires building the APK, reviewing the merged manifest/dependency graph, and testing network traffic on a clean install. No build was run as part of this stage.
+- Telegram MTProto/API requests are required for account login, messages, media, calls, and push registration.
+- Firebase Messaging remains for push notifications. The repository's Google Services configuration still names the upstream AyuGram Firebase project. This should be replaced with a Firebase project controlled by the SealGram maintainer if push notifications are to remain enabled without that upstream project association.
+- Google Translate receives text a user explicitly asks the app to translate.
+- Maps, authentication, billing, language identification, and other Google Play services remain for their associated features.
+- The updater now checks this fork's GitHub releases instead of AyuGram's releases.
+
+## Limits of this audit
+
+No evidence in the reviewed client code proves that AyuGram sells user data. The code does contain optional sync traffic described above, which is now disabled. This audit cannot inspect the server-side backend or the separately permissioned proprietary submodule that was not included in the imported public source. A full assurance check still requires an Android build, merged-manifest/dependency review, and network capture on a clean install.
