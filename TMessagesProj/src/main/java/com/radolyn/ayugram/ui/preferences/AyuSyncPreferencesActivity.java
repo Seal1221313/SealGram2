@@ -156,8 +156,10 @@ public class AyuSyncPreferencesActivity extends BasePreferencesActivity implemen
                     }
             );
         } else if (position == syncEnabledRow) {
-            AyuConfig.editor.putBoolean("syncEnabled", AyuConfig.syncEnabled ^= true).apply();
-            ((TextCheckCell) view).setChecked(AyuConfig.syncEnabled);
+            // Privacy: AyuSync cannot be enabled in this fork.
+            AyuConfig.syncEnabled = false;
+            AyuConfig.editor.putBoolean("syncEnabled", false).apply();
+            ((TextCheckCell) view).setChecked(false);
 
             AyuSyncController.nullifyInstance();
             AyuSyncController.create();
