@@ -443,7 +443,7 @@ public class SharedConfig {
                     byte[] arr = Base64.decode(update, Base64.DEFAULT);
                     if (arr != null) {
                         SerializedData data = new SerializedData(arr);
-                        pendingAppUpdate = (TLRPC.TL_help_appUpdate) TLRPC.help_AppUpdate.TLdeserialize(data, data.readInt32(false), false);
+                        pendingAppUpdate = null;
                         data.cleanup();
                     }
                 }
@@ -641,6 +641,9 @@ public class SharedConfig {
     }
 
     public static boolean setNewAppVersionAvailable(TLRPC.TL_help_appUpdate update) {
+        if (true) {
+            return false;
+        }
         String updateVersionString = null;
         int versionCode = 0;
         try {

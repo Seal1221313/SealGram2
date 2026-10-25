@@ -45,3 +45,9 @@ No Android build or clean-install network capture has been run after these commi
 - Removed unused websocket and OkHttp dependencies.
 - Fixed compile breakage from the earlier Firebase removal (Assistant app-indexing hook in LaunchActivity, Firebase drawable reference in LoginActivity).
 - Removed upstream import workflows, AyuGram/exteraGram demo assets and issue templates, developer/official-channel ID lists, hardcoded upstream app path and store URL.
+
+## Stage 4 — updates removed
+- Deleted the in-app updater (`UpdaterUtils`, `UpdaterBottomSheet*`) and all GitHub update checks/APK downloads.
+- Disabled Telegram's server-driven app update flow: `checkAppUpdate` is a no-op, `SharedConfig.setNewAppVersionAvailable` never stores a pending update, stored pending updates are ignored.
+- Removed `REQUEST_INSTALL_PACKAGES` and `REQUEST_DELETE_PACKAGES` permissions, and the install-referrer receiver (`RefererReceiver`).
+- Settings "About" row no longer opens an update dialog; source link points to this repo.

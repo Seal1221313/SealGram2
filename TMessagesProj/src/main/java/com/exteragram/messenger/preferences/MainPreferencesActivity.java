@@ -26,7 +26,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.exteragram.messenger.preferences.components.HeaderSettingsCell;
-import com.exteragram.messenger.preferences.updater.UpdaterBottomSheet;
 import com.radolyn.ayugram.ui.preferences.AyuGramPreferencesActivity;
 
 import org.telegram.messenger.AndroidUtilities;
@@ -211,11 +210,8 @@ public class MainPreferencesActivity extends BasePreferencesActivity {
 
     @Override
     protected void onItemClick(View view, int position, float x, float y) {
-        if (position == aboutExteraRow) {
-            if (!BuildVars.PM_BUILD)
-                (new UpdaterBottomSheet(getParentActivity(), this, false, null)).show();
-        } else if (position == sourceCodeRow) {
-            Browser.openUrl(getParentActivity(), "https://github.com/AyuGram/AyuGram4A");
+        if (position == sourceCodeRow) {
+            Browser.openUrl(getParentActivity(), "https://github.com/Seal1221313/SealGram2");
         } else if (position == channelRow) {
             MessagesController.getInstance(currentAccount).openByUserName(("ayugram1338"), this, 1);
         } else if (position == groupRow) {
