@@ -93,7 +93,7 @@
     <application
         android:name=".ApplicationLoader"
         android:allowAudioPlaybackCapture="true"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:backupAgent=".BackupAgent"
         android:exported="true"
         android:hardwareAccelerated="@bool/useHardwareAcceleration"
