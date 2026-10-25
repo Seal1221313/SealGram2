@@ -43,7 +43,7 @@ jobs:
             --exclude='/.git/' \
             --exclude='/SECURITY_AUDIT_STAGE1.md' \
             --exclude='/AYUGRAM_PORT_MAP.md' \
-            --exclude='/.github/workflows/import-ayugram-base.yml' \
+            --exclude='/.github/workflows/***' \
             /tmp/ayugram/ "$GITHUB_WORKSPACE"/
           git status --short | head -200
 
