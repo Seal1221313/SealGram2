@@ -31,7 +31,7 @@ jobs:
           git clone --depth 1 https://github.com/Seal1221313/SealGram-clean.git /tmp/sealgram-clean
           # Import all tracked project files, source code, resources, and assets.
           # Keep SealGram2's audit and port-plan documents.
-          cp -a /tmp/sealgram-clean/. "$GITHUB_WORKSPACE"/
+          tar --exclude=.git -C /tmp/sealgram-clean -cf - . | tar -C "$GITHUB_WORKSPACE" -xf -
           git status --short
 
       - name: Commit imported baseline
