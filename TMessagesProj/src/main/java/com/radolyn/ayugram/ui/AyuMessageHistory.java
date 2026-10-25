@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.radolyn.ayugram.AyuConstants;
 import com.radolyn.ayugram.database.entities.EditedMessage;
 import com.radolyn.ayugram.messages.AyuMessagesController;
-import com.radolyn.ayugram.proprietary.AyuMessageUtils;
+import com.radolyn.ayugram.history.AyuMessageUtils;
 import org.telegram.messenger.*;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;

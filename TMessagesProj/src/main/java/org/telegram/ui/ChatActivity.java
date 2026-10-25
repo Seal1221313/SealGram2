@@ -117,7 +117,7 @@ import com.radolyn.ayugram.AyuConstants;
 import com.radolyn.ayugram.AyuFilter;
 import com.radolyn.ayugram.AyuUtils;
 import com.radolyn.ayugram.messages.AyuMessagesController;
-import com.radolyn.ayugram.proprietary.AyuHistoryHook;
+import com.radolyn.ayugram.history.AyuHistoryHook;
 import com.radolyn.ayugram.ui.DummyView;
 import com.radolyn.ayugram.utils.AyuState;
 import com.radolyn.ayugram.utils.AyuGhostUtils;

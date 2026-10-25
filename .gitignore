@@ -14,3 +14,5 @@ API_KEYS
 *.iml
 *.apk
 *.so
+
+TMessagesProj/config/sealgram.jks

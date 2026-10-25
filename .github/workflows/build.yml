@@ -1,0 +1,58 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Android SDK/NDK
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-33" "build-tools;33.0.1" "ndk;21.4.7075529" "cmake;3.10.2.4988404"
+
+      - name: Signing key and API keys
+        env:
+          KEYSTORE_B64: ${{ secrets.SIGNING_KEYSTORE_BASE64 }}
+          STORE_PASS: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          APP_ID: ${{ secrets.APP_ID }}
+          APP_HASH: ${{ secrets.APP_HASH }}
+          MAPS_KEY: ${{ secrets.MAPS_V2_API }}
+        run: |
+          if [ -n "$KEYSTORE_B64" ]; then
+            echo "$KEYSTORE_B64" | base64 -d > TMessagesProj/config/sealgram.jks
+          else
+            STORE_PASS=$(openssl rand -hex 12); KEY_PASS=$STORE_PASS; KEY_ALIAS=sealgram
+            keytool -genkeypair -keystore TMessagesProj/config/sealgram.jks -storepass "$STORE_PASS" -keypass "$KEY_PASS" -alias "$KEY_ALIAS" -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=SealGram"
+          fi
+          {
+            echo "SIGNING_KEY_STORE_PASSWORD=$STORE_PASS"
+            echo "SIGNING_KEY_ALIAS=$KEY_ALIAS"
+            echo "SIGNING_KEY_PASSWORD=$KEY_PASS"
+            echo "APP_ID=${APP_ID:-1}"
+            echo "APP_HASH=\"${APP_HASH:-00000000000000000000000000000000}\""
+            echo "MAPS_V2_API=${MAPS_KEY}"
+          } > API_KEYS
+
+      - name: Build arm64 debug
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon --stacktrace :TMessagesProj:assembleArm64Debug
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sealgram-arm64-debug
+          path: TMessagesProj/build/outputs/apk/**/*.apk
