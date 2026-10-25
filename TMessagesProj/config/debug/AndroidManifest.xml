@@ -32,14 +32,7 @@
         android:requestLegacyExternalStorage="true"
         tools:replace="android:supportsRtl">
 
-        <service
-            android:name="org.telegram.messenger.GcmPushListenerService" android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-        <uses-library android:name="com.google.android.maps" android:required="false"/>
+<uses-library android:name="com.google.android.maps" android:required="false"/>
 
 <!--        <meta-data android:name="firebase_analytics_collection_deactivated" android:value="true" />-->
 <!--        <meta-data android:name="google_analytics_adid_collection_enabled" android:value="false" />-->
