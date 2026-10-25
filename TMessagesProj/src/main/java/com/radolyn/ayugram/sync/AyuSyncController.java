@@ -44,23 +44,14 @@ public class AyuSyncController {
         client = clientBuilder.build();
     }
 
+    /**
+     * Privacy hardening: AyuSync is intentionally disabled in this fork.
+     * Do not connect to ayusync.cloud or any configured third-party sync server.
+     */
     public static void create() {
-        if (instance != null && !(instance instanceof AyuSyncControllerEmpty)) {
-            return;
-        }
-
-        if (!AyuConfig.syncEnabled) {
-            AyuSyncWebSocketClient.nullifyInstance();
-            instance = new AyuSyncControllerEmpty();
-            return;
-        }
-
-        instance = new AyuSyncController();
-
-        queue.postRunnable(() -> {
-            instance.loadAccounts();
-            instance.connect();
-        });
+        AyuSyncWebSocketClient.nullifyInstance();
+        instance = new AyuSyncControllerEmpty();
+        AyuSyncState.setConnectionState(AyuSyncConnectionState.NotRegistered);
     }
 
     public static AyuSyncController getInstance() {
