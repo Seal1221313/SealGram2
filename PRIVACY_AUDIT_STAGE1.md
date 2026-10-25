@@ -43,3 +43,5 @@ No Android build or clean-install network capture has been run after these commi
 - Full sweep found no hidden modules: no dynamic code loading, no encoded strings/IPs in Java or native code; only network users are Telegram MTProto, DNS fallback (Google/Mozilla), GitHub update check, Google Translate on request, optional map tiles.
 - Removed third-party bot lookup (`@tgdb_bot` inline queries with user IDs) from `ChatUtils`; ID lookup now uses local cache only.
 - Removed unused websocket and OkHttp dependencies.
+- Fixed compile breakage from the earlier Firebase removal (Assistant app-indexing hook in LaunchActivity, Firebase drawable reference in LoginActivity).
+- Removed upstream import workflows, AyuGram/exteraGram demo assets and issue templates, developer/official-channel ID lists, hardcoded upstream app path and store URL.

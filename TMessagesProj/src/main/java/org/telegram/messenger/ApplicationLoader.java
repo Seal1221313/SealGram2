@@ -137,7 +137,7 @@ public class ApplicationLoader extends Application {
         } catch (Exception e) {
             FileLog.e(e);
         }
-        return new File("/data/data/com.radolyn.ayugram/files");
+        return new File(applicationContext.getFilesDir(), "files");
     }
 
     public static void postInitApplication() {
