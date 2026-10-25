@@ -2,6 +2,10 @@ name: Stage 1 - Import full AyuGram base
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/import-ayugram-base.yml"
 
 permissions:
   contents: write
