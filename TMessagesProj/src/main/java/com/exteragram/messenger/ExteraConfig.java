@@ -260,8 +260,8 @@ public class ExteraConfig {
             channelToSave = preferences.getLong("channelToSave", 0);
             targetLanguage = preferences.getString("targetLanguage", (String) supportedLanguages[8]);
             voiceHintShowcases = preferences.getInt("voiceHintShowcases", 0);
-            useGoogleCrashlytics = preferences.getBoolean("useGoogleCrashlytics", BuildVars.isBetaApp());
-            useGoogleAnalytics = preferences.getBoolean("useGoogleAnalytics", BuildVars.isBetaApp());
+            useGoogleCrashlytics = false; // Privacy: crash-report uploads disabled.
+            useGoogleAnalytics = false; // Privacy: analytics collection disabled.
 
             configLoaded = true;
         }
