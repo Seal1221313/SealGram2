@@ -112,7 +112,7 @@ public class AyuConfig {
             // ~ AyuSync
             // syncServerURL
             // syncServerToken
-            syncEnabled = preferences.getBoolean("syncEnabled", false);
+            syncEnabled = false; // Privacy: AyuSync is disabled in this fork; ignore saved settings.
             useSecureConnection = preferences.getBoolean("useSecureConnection", true);
 
             // ~ Debug
@@ -182,11 +182,11 @@ public class AyuConfig {
     }
 
     public static String getSyncServerURL() {
-        return preferences.getString("syncServerURL", AyuConstants.DEFAULT_AYUSYNC_SERVER);
+        return "127.0.0.1:1"; // Privacy: never use a third-party AyuSync host.
     }
 
     public static String getSyncServerToken() {
-        return preferences.getString("syncServerToken", "");
+        return ""; // Privacy: never send an AyuSync token.
     }
 
     public static ArrayList<String> getRegexFilters() {
