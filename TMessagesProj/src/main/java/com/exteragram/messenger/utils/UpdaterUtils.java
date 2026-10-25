@@ -107,7 +107,7 @@ public class UpdaterUtils {
                     uri = uri.replace("/" + AyuConstants.APP_NAME + "/", "/" + AyuConstants.APP_NAME + "-Beta/");
                 var connection = (HttpURLConnection) new URI(uri).toURL().openConnection();
                 connection.setRequestMethod("GET");
-                connection.setRequestProperty("User-Agent", TranslatorUtils.formatUserAgent());
+                connection.setRequestProperty("User-Agent", "SealGram-Update-Checker");
                 connection.setRequestProperty("Content-Type", "application/json");
 
                 var textBuilder = new StringBuilder();
