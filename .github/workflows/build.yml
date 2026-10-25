@@ -8,7 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 150
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -50,7 +52,23 @@ jobs:
       - name: Build debug
         run: |
           chmod +x gradlew
-          ./gradlew --no-daemon --stacktrace :TMessagesProj:assembleDebug
+          set -o pipefail
+          ./gradlew --no-daemon --stacktrace :TMessagesProj:assembleDebug 2>&1 | tee build.log
+
+      - name: Publish log on failure
+        if: failure()
+        run: |
+          mkdir -p /tmp/l
+          grep -nE "error:|FAILED|What went wrong|Execution failed|Could not|cannot find symbol|symbol:|location:|does not exist" -A2 build.log | head -c 150000 > /tmp/l/errors.txt || true
+          tail -n 300 build.log > /tmp/l/tail.txt || true
+          git config user.name ci
+          git config user.email ci@users.noreply.github.com
+          git checkout --orphan ci-logs
+          git rm -rf . -q
+          cp /tmp/l/errors.txt /tmp/l/tail.txt .
+          git add errors.txt tail.txt
+          git commit -qm "build log"
+          git push -f origin ci-logs
 
       - uses: actions/upload-artifact@v4
         with:
