@@ -2,8 +2,10 @@ name: Build
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
+    inputs:
+      task:
+        description: Gradle task
+        default: ':TMessagesProj:assembleDebug'
 
 jobs:
   build:
@@ -53,7 +55,7 @@ jobs:
         run: |
           chmod +x gradlew
           set -o pipefail
-          ./gradlew --no-daemon --stacktrace :TMessagesProj:assembleDebug 2>&1 | tee build.log
+          ./gradlew --no-daemon --stacktrace ${{ inputs.task }} 2>&1 | tee build.log
 
       - name: Publish log on failure
         if: failure()

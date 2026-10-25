@@ -30,7 +30,6 @@ import android.util.Base64;
 
 import androidx.collection.LongSparseArray;
 
-import com.exteragram.messenger.boost.encryption.BaseEncryptor;
 import com.radolyn.ayugram.AyuConfig;
 import com.radolyn.ayugram.AyuConstants;
 
@@ -282,7 +281,6 @@ public class MessageObject {
     public Drawable customAvatarDrawable;
 
     public boolean isDecrypted;
-    public BaseEncryptor currentEncryptor;
     public String originalText;
 
     public void updateMessage(boolean reset) {

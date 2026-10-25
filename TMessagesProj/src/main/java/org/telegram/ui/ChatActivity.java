@@ -108,8 +108,6 @@ import com.exteragram.messenger.ExteraConfig;
 import com.exteragram.messenger.components.MessageDetailsPopupWrapper;
 import com.exteragram.messenger.utils.ChatUtils;
 import com.exteragram.messenger.utils.SystemUtils;
-import com.exteragram.messenger.boost.BoostController;
-import com.exteragram.messenger.boost.encryption.EncryptionHelper;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.zxing.common.detector.MathUtils;
 import com.radolyn.ayugram.AyuConfig;
@@ -23775,11 +23773,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                             icons.add(R.drawable.msg_pin);
                         }
                         if (selectedObject != null && selectedObject.contentType == 0) {
-                            if (BoostController.isUserBooster() && (EncryptionHelper.isEncrypted(selectedObject.messageOwner.message) || selectedObject.isDecrypted)) {
-                                items.add(LocaleController.getString(R.string.Decrypt));
-                                options.add(OPTION_DECRYPT);
-                                icons.add(R.drawable.msg_permissions);
-                            } else if (messageTextToTranslate != null && messageTextToTranslate.length() > 0 && !selectedObject.isAnimatedEmoji() && !selectedObject.isDice()) {
+                            if (messageTextToTranslate != null && messageTextToTranslate.length() > 0 && !selectedObject.isAnimatedEmoji() && !selectedObject.isDice()) {
                                 items.add(LocaleController.getString("TranslateMessage", R.string.TranslateMessage));
                                 options.add(OPTION_TRANSLATE);
                                 icons.add(R.drawable.msg_translate);
@@ -24100,11 +24094,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                             icons.add(R.drawable.msg_stats);
                         }
                         if (selectedObject != null && selectedObject.contentType == 0) {
-                            if (BoostController.isUserBooster() && (EncryptionHelper.isEncrypted(selectedObject.messageOwner.message) || selectedObject.isDecrypted)) {
-                                items.add(LocaleController.getString(R.string.Decrypt));
-                                options.add(OPTION_DECRYPT);
-                                icons.add(R.drawable.msg_permissions);
-                            } else if (messageTextToTranslate != null && messageTextToTranslate.length() > 0 && !selectedObject.isAnimatedEmoji() && !selectedObject.isDice()) {
+                            if (messageTextToTranslate != null && messageTextToTranslate.length() > 0 && !selectedObject.isAnimatedEmoji() && !selectedObject.isDice()) {
                                 items.add(LocaleController.getString("TranslateMessage", R.string.TranslateMessage));
                                 options.add(OPTION_TRANSLATE);
                                 icons.add(R.drawable.msg_translate);
@@ -25889,21 +25879,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         updateVisibleRows();
                         if (chatMode == 0) {
                             moveScrollToLastMessage(false);
-                        }
-                    }
-                }
-                break;
-            }
-            case OPTION_DECRYPT: {
-                int count = chatListView.getChildCount();
-                for (int a = 0; a < count; a++) {
-                    View child = chatListView.getChildAt(a);
-                    if (child instanceof ChatMessageCell) {
-                        ChatMessageCell cell = (ChatMessageCell) child;
-                        if (cell.getMessageObject() == selectedObject) {
-                            cell.setMessageObject(EncryptionHelper.decryptMessage(selectedObject, selectedObjectGroup), cell.getCurrentMessagesGroup(), cell.isPinnedBottom(), cell.isPinnedTop());
-                            chatAdapter.updateRowAtPosition(chatListView.getChildAdapterPosition(child));
-                            break;
                         }
                     }
                 }
