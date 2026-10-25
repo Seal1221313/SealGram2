@@ -56,8 +56,6 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     // ~ AyuGram Sync deps
-    implementation "dev.gustavoavila:java-android-websocket-client:2.0.2"
-    implementation "com.squareup.okhttp3:okhttp:4.10.0"
 
     implementation files('libs/libgsaverification-client.aar')
 }

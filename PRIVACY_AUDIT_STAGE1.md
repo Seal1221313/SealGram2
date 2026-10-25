@@ -41,3 +41,5 @@ No Android build or clean-install network capture has been run after these commi
 - Removed Crashlytics/Analytics toggles and config fields from Other settings.
 - Removed leftover Google Analytics (AppMeasurement) services/receiver from the manifest.
 - Full sweep found no hidden modules: no dynamic code loading, no encoded strings/IPs in Java or native code; only network users are Telegram MTProto, DNS fallback (Google/Mozilla), GitHub update check, Google Translate on request, optional map tiles.
+- Removed third-party bot lookup (`@tgdb_bot` inline queries with user IDs) from `ChatUtils`; ID lookup now uses local cache only.
+- Removed unused websocket and OkHttp dependencies.
