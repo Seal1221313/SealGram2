@@ -18,7 +18,6 @@ import com.exteragram.messenger.preferences.BasePreferencesActivity;
 import com.radolyn.ayugram.AyuConfig;
 import com.radolyn.ayugram.AyuConstants;
 import com.radolyn.ayugram.messages.AyuMessagesController;
-import com.radolyn.ayugram.sync.AyuSyncState;
 import com.radolyn.ayugram.ui.preferences.utils.AyuUi;
 import com.radolyn.ayugram.utils.AyuState;
 import org.jetbrains.annotations.NotNull;
@@ -65,9 +64,6 @@ public class AyuGramPreferencesActivity extends BasePreferencesActivity implemen
     private int showKillButtonInDrawerRow;
     private int customizationDividerRow;
 
-    private int ayuSyncHeaderRow;
-    private int ayuSyncStatusBtnRow;
-    private int ayuSyncDividerRow;
 
     private int debugHeaderRow;
     private int WALModeRow;
@@ -119,9 +115,6 @@ public class AyuGramPreferencesActivity extends BasePreferencesActivity implemen
         showKillButtonInDrawerRow = newRow();
         customizationDividerRow = newRow();
 
-        ayuSyncHeaderRow = newRow();
-        ayuSyncStatusBtnRow = newRow();
-        ayuSyncDividerRow = newRow();
 
         debugHeaderRow = newRow();
         WALModeRow = newRow();
@@ -136,7 +129,6 @@ public class AyuGramPreferencesActivity extends BasePreferencesActivity implemen
         // todo: register `MESSAGES_DELETED_NOTIFICATION` on all notification centers, not only on the current account
 
         NotificationCenter.getInstance(UserConfig.selectedAccount).addObserver(this, AyuConstants.MESSAGES_DELETED_NOTIFICATION);
-        NotificationCenter.getGlobalInstance().addObserver(this, AyuConstants.AYUSYNC_STATE_CHANGED);
 
         return true;
     }
@@ -148,10 +140,6 @@ public class AyuGramPreferencesActivity extends BasePreferencesActivity implemen
             if (listAdapter != null) {
                 listAdapter.notifyItemChanged(clearAyuDatabaseBtnRow);
             }
-        } else if (id == AyuConstants.AYUSYNC_STATE_CHANGED) {
-            if (listAdapter != null) {
-                listAdapter.notifyItemChanged(ayuSyncStatusBtnRow);
-            }
         }
     }
 
@@ -160,7 +148,6 @@ public class AyuGramPreferencesActivity extends BasePreferencesActivity implemen
         super.onFragmentDestroy();
 
         NotificationCenter.getInstance(UserConfig.selectedAccount).removeObserver(this, AyuConstants.MESSAGES_DELETED_NOTIFICATION);
-        NotificationCenter.getGlobalInstance().removeObserver(this, AyuConstants.AYUSYNC_STATE_CHANGED);
     }
 
     private void updateGhostViews() {
@@ -295,8 +282,6 @@ public class AyuGramPreferencesActivity extends BasePreferencesActivity implemen
                     "editedMarkText",
                     LocaleController.getString("EditedMessage", R.string.EditedMessage) // don't remove key
             );
-        } else if (position == ayuSyncStatusBtnRow) {
-            presentFragment(new AyuSyncPreferencesActivity());
         } else if (position == WALModeRow) {
             AyuConfig.editor.putBoolean("WALMode", AyuConfig.WALMode ^= true).apply();
             ((TextCheckCell) view).setChecked(AyuConfig.WALMode);
@@ -369,10 +354,6 @@ public class AyuGramPreferencesActivity extends BasePreferencesActivity implemen
                         textCell.setTextAndValue(LocaleController.getString(R.string.DeletedMarkText), AyuConfig.getDeletedMark(), true);
                     } else if (position == editedMarkTextRow) {
                         textCell.setTextAndValue(LocaleController.getString(R.string.EditedMarkText), AyuConfig.getEditedMark(), true);
-                    } else if (position == ayuSyncStatusBtnRow) {
-                        var status = AyuSyncState.getConnectionStateString();
-
-                        textCell.setTextAndValue(LocaleController.getString(R.string.AyuSyncStatusTitle), status, false);
                     } else if (position == clearAyuDatabaseBtnRow) {
                         var file = ApplicationLoader.applicationContext.getDatabasePath(AyuConstants.AYU_DATABASE);
                         var size = file.exists() ? file.length() : 0;
@@ -394,8 +375,6 @@ public class AyuGramPreferencesActivity extends BasePreferencesActivity implemen
                         headerCell.setText(LocaleController.getString(R.string.QoLTogglesHeader));
                     } else if (position == customizationHeaderRow) {
                         headerCell.setText(LocaleController.getString(R.string.CustomizationHeader));
-                    } else if (position == ayuSyncHeaderRow) {
-                        headerCell.setText(LocaleController.getString(R.string.AyuSyncHeader));
                     } else if (position == debugHeaderRow) {
                         headerCell.setText(LocaleController.getString("SettingsDebug", R.string.SettingsDebug));
                     }
@@ -481,7 +460,6 @@ public class AyuGramPreferencesActivity extends BasePreferencesActivity implemen
                             position == spyDivider2Row ||
                             position == qolDividerRow ||
                             position == customizationDividerRow ||
-                            position == ayuSyncDividerRow ||
                             position == buttonsDividerRow
             ) {
                 return 1;
@@ -489,7 +467,6 @@ public class AyuGramPreferencesActivity extends BasePreferencesActivity implemen
                     position == messageSavingBtnRow ||
                             position == deletedMarkTextRow ||
                             position == editedMarkTextRow ||
-                            position == ayuSyncStatusBtnRow ||
                             position == clearAyuDatabaseBtnRow ||
                             position == eraseLocalDatabaseBtnRow
             ) {
@@ -499,7 +476,6 @@ public class AyuGramPreferencesActivity extends BasePreferencesActivity implemen
                             position == spyHeaderRow ||
                             position == qolHeaderRow ||
                             position == customizationHeaderRow ||
-                            position == ayuSyncHeaderRow ||
                             position == debugHeaderRow
             ) {
                 return 3;

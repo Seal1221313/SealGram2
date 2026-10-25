@@ -50,7 +50,6 @@ public class AyuConfig {
     public static boolean regexFiltersCaseInsensitive;
     public static boolean showGhostToggleInDrawer;
     public static boolean showKillButtonInDrawer;
-    public static boolean syncEnabled;
     public static boolean useSecureConnection;
     public static boolean WALMode;
 
@@ -109,10 +108,6 @@ public class AyuConfig {
             showGhostToggleInDrawer = preferences.getBoolean("showGhostToggleInDrawer", true);
             showKillButtonInDrawer = preferences.getBoolean("showKillButtonInDrawer", false);
 
-            // ~ AyuSync
-            // syncServerURL
-            // syncServerToken
-            syncEnabled = false; // Privacy: AyuSync is disabled in this fork; ignore saved settings.
             useSecureConnection = preferences.getBoolean("useSecureConnection", true);
 
             // ~ Debug
@@ -179,14 +174,6 @@ public class AyuConfig {
 
     public static String getWALMode() {
         return AyuConfig.WALMode ? "WAL" : "OFF";
-    }
-
-    public static String getSyncServerURL() {
-        return "127.0.0.1:1"; // Privacy: never use a third-party AyuSync host.
-    }
-
-    public static String getSyncServerToken() {
-        return ""; // Privacy: never send an AyuSync token.
     }
 
     public static ArrayList<String> getRegexFilters() {

@@ -11,7 +11,6 @@ import android.util.Base64;
 
 import com.radolyn.ayugram.AyuConfig;
 import com.radolyn.ayugram.AyuConstants;
-import com.radolyn.ayugram.sync.AyuSyncController;
 import com.radolyn.ayugram.utils.AyuGhostUtils;
 import com.radolyn.ayugram.utils.AyuState;
 
@@ -347,11 +346,6 @@ public class ConnectionsManager extends BaseController {
                         }
                     } catch (Exception e) {
                         FileLog.e(e);
-                    }
-
-                    var pair = AyuGhostUtils.getDialogIdAndMessageIdFromRequest(object);
-                    if (pair != null) {
-                        AyuSyncController.getInstance().syncRead(currentAccount, pair.first, pair.second);
                     }
 
                     return;

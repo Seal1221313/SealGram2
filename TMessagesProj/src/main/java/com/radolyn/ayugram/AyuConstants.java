@@ -39,13 +39,8 @@ public class AyuConstants {
 
     public static final int MESSAGE_EDITED_NOTIFICATION = 6968;
     public static final int MESSAGES_DELETED_NOTIFICATION = 6969;
-    public static final int AYUSYNC_STATE_CHANGED = 6970;
-    public static final int AYUSYNC_LAST_SENT_CHANGED = 6971;
-    public static final int AYUSYNC_LAST_RECEIVED_CHANGED = 6972;
-    public static final int AYUSYNC_REGISTER_STATUS_CODE_CHANGED = 6973;
 
     public static String DEFAULT_DELETED_MARK = "🧹";
-    public static String DEFAULT_AYUSYNC_SERVER = "localhost";
 
     public static String AYU_DATABASE = "ayu-data";
 

@@ -33,3 +33,9 @@ Date: 2026-10-25
 The reviewed client source contained data collection and sync paths described above. **I found no client-code evidence proving that AyuGram sells user data.** This audit cannot inspect server-side systems or the separately permissioned proprietary submodule that was not available in the imported public source.
 
 No Android build or clean-install network capture has been run after these commits. Therefore compilation and runtime behavior are not yet verified. Before installing, build the intended variant and inspect the merged manifest/dependency graph; then test login, background notifications, media, calls and manual update checks.
+
+## Stage 3
+
+- AyuSync removed entirely: `com.radolyn.ayugram.sync` package, `AyuSyncPreferencesActivity`, all hooks (ApplicationLoader, ConnectionsManager read-sync, settings rows), config getters and constants.
+- Removed device-identifier (ANDROID_ID) and device-name helpers that existed only for sync registration.
+- Removed Crashlytics/Analytics toggles and config fields from Other settings.

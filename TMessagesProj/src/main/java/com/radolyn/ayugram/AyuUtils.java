@@ -181,15 +181,6 @@ public class AyuUtils {
         return ApplicationLoader.applicationContext.getPackageName();
     }
 
-    @SuppressLint("HardwareIds")
-    public static String getDeviceIdentifier() {
-        return Secure.getString(ApplicationLoader.applicationContext.getContentResolver(), Secure.ANDROID_ID);
-    }
-
-    public static String getDeviceName() {
-        return Build.MANUFACTURER + " " + Build.MODEL;
-    }
-
     public static void killApplication(Activity activity) {
         activity.finishAndRemoveTask();
         int pid = android.os.Process.myPid();

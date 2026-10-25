@@ -138,8 +138,6 @@ public class ExteraConfig {
             "Spanish (ES)", "Swedish (SV)", "Turkish (TR)", "Ukrainian (UK)", "Uzbek (UZ)"
     };
     public static int voiceHintShowcases;
-    public static boolean useGoogleCrashlytics;
-    public static boolean useGoogleAnalytics;
 
     private static boolean configLoaded;
 
@@ -260,8 +258,6 @@ public class ExteraConfig {
             channelToSave = preferences.getLong("channelToSave", 0);
             targetLanguage = preferences.getString("targetLanguage", (String) supportedLanguages[8]);
             voiceHintShowcases = preferences.getInt("voiceHintShowcases", 0);
-            useGoogleCrashlytics = false; // Privacy: crash-report uploads disabled.
-            useGoogleAnalytics = false; // Privacy: analytics collection disabled.
 
             configLoaded = true;
         }
