@@ -113,7 +113,7 @@ public class AyuConfig {
             // syncServerURL
             // syncServerToken
             syncEnabled = preferences.getBoolean("syncEnabled", false);
-            useSecureConnection = preferences.getBoolean("useSecureConnection", !BuildVars.isBetaApp());
+            useSecureConnection = preferences.getBoolean("useSecureConnection", true);
 
             // ~ Debug
             WALMode = preferences.getBoolean("walMode", true);
