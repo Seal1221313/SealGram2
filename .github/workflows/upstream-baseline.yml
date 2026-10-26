@@ -1,6 +1,9 @@
 name: Verify Telegram 13.1.1 upstream baseline
 
 on:
+  push:
+    branches: ["upgrade/telegram-13.1.1"]
+    paths: ['.github/workflows/upstream-baseline.yml']
   workflow_dispatch:
 
 permissions:
