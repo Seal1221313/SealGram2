@@ -87,7 +87,8 @@ jobs:
           echo "APK: $APK"
           "$ANDROID_HOME/build-tools/33.0.1/zipalign" -c -v 4 "$APK"
           "$ANDROID_HOME/build-tools/33.0.1/apksigner" verify --verbose --print-certs "$APK"
-          "$ANDROID_HOME/build-tools/33.0.1/aapt2" dump badging "$APK" | head -n 8
+          "$ANDROID_HOME/build-tools/33.0.1/aapt2" dump badging "$APK" > /tmp/sealgram-badging.txt
+          head -n 8 /tmp/sealgram-badging.txt
           sha256sum "$APK"
 
       - name: Release APK
