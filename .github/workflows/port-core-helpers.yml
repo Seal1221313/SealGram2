@@ -71,9 +71,8 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          mkdir -p .github/workflows
-          cp ../sealgram-old/.github/workflows/port-core-helpers.yml .github/workflows/port-core-helpers.yml
-          git add TMessagesProj/src/main/java/org/telegram/messenger/SealGram.java TMessagesProj/src/main/java/org/telegram/messenger/SealGramI18n.java .github/workflows/port-core-helpers.yml
+          git fetch --unshallow origin
+          git add TMessagesProj/src/main/java/org/telegram/messenger/SealGram.java TMessagesProj/src/main/java/org/telegram/messenger/SealGramI18n.java
           if git diff --cached --quiet; then
             echo "No port changes to publish."
             exit 0
