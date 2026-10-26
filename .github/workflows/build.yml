@@ -1,11 +1,16 @@
 name: Build
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'TMessagesProj/build.gradle'
+      - '.github/workflows/build.yml'
   workflow_dispatch:
     inputs:
       task:
         description: Gradle task
-        default: ':TMessagesProj:assembleDebug'
+        default: ':TMessagesProj:assembleBetaDebug'
 
 jobs:
   build:
@@ -55,7 +60,7 @@ jobs:
         run: |
           chmod +x gradlew
           set -o pipefail
-          ./gradlew --no-daemon --stacktrace ${{ inputs.task }} 2>&1 | tee build.log
+          ./gradlew --no-daemon --stacktrace "${{ inputs.task || ':TMessagesProj:assembleBetaDebug' }}" 2>&1 | tee build.log
 
       - name: Release APK
         if: success()
