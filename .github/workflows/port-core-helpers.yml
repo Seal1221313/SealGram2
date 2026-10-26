@@ -45,6 +45,9 @@ jobs:
           grep -q 'class ApplicationLoader' "$new/ApplicationLoader.java"
           echo "Core dependency ApplicationLoader exists in upstream."
 
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
       - name: Build upstream with first ported helper group
         working-directory: telegram-new
         env:
