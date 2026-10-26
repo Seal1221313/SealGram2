@@ -1,0 +1,300 @@
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/./tgnet/Defines.h:140:16: warning: 'ConnectiosManagerDelegate' has virtual functions but non-virtual destructor [-Wnon-virtual-dtor]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/./tgnet/Defines.h:156:16: warning: 'HandshakeDelegate' has virtual functions but non-virtual destructor [-Wnon-virtual-dtor]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/rlottie/src/lottie/lottieparser.cpp:186:60: warning: field 'colorMap' will be initialized after field 'mFitzModifier' [-Wreorder]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/rlottie/src/vector/vraster.cpp:22:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/./tgnet/FileLog.h:12:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/./tgnet/Defines.h:140:16: warning: 'ConnectiosManagerDelegate' has virtual functions but non-virtual destructor [-Wnon-virtual-dtor]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/./tgnet/Defines.h:156:16: warning: 'HandshakeDelegate' has virtual functions but non-virtual destructor [-Wnon-virtual-dtor]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/tgnet/ConnectionsManager.cpp:1897:101: warning: expression with side effects will be evaluated despite being used as an operand to 'typeid' [-Wpotentially-evaluated-expression]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/tgnet/ConnectionsManager.cpp:2772:155: warning: expression with side effects will be evaluated despite being used as an operand to 'typeid' [-Wpotentially-evaluated-expression]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/tgnet/ConnectionsManager.cpp:2997:43: warning: array subscript is of type 'char' [-Wchar-subscripts]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/Buffers.cpp:7:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/logging.cpp:12:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/VoIPController.h:24:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/VideoSource.h:12:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/AudioInput.cpp:7:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../os/android/../../audio/AudioInput.h:13:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../MediaStreamItf.h:14:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../os/android/../../threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/BlockingQueue.cpp:7:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/BlockingQueue.h:12:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/AudioInputOpenSLES.cpp:11:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/AudioInputOpenSLES.h:13:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../audio/AudioInput.h:13:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../audio/../MediaStreamItf.h:14:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/VoIPGroupController.cpp:7:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/VoIPController.h:24:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/VideoSource.h:12:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/AudioOutput.cpp:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../os/android/AudioOutputAndroid.h:20:15: warning: 'Start' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../MediaStreamItf.h:24:15: note: overridden virtual function is here
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/AudioOutput.cpp:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../os/android/AudioOutputAndroid.h:21:15: warning: 'Stop' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../MediaStreamItf.h:25:15: note: overridden virtual function is here
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/AudioOutput.cpp:7:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../os/android/../../audio/AudioOutput.h:14:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../MediaStreamItf.h:14:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/MediaStreamItf.cpp:8:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/MediaStreamItf.h:14:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/OpusEncoder.cpp:7:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/OpusEncoder.h:11:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/MediaStreamItf.h:14:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/AudioOutputOpenSLES.cpp:10:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/AudioOutputOpenSLES.h:13:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/AudioOutput.h:14:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/MediaStreamItf.h:14:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/JitterBuffer.cpp:7:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/VoIPController.h:24:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/VideoSource.h:12:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/EchoCanceller.cpp:12:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/EchoCanceller.h:10:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/OpusDecoder.cpp:7:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/OpusDecoder.h:11:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../MediaStreamItf.h:14:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/AudioInputAndroid.cpp:7:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/AudioInputAndroid.h:11:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../audio/AudioInput.h:13:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../audio/../MediaStreamItf.h:14:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/AudioOutputAndroid.cpp:7:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/AudioOutputAndroid.h:20:15: warning: 'Start' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../audio/../MediaStreamItf.h:24:15: note: overridden virtual function is here
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/AudioOutputAndroid.cpp:7:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/AudioOutputAndroid.h:21:15: warning: 'Stop' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../audio/../MediaStreamItf.h:25:15: note: overridden virtual function is here
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/AudioOutputAndroid.cpp:7:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/AudioOutputAndroid.h:11:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../audio/AudioOutput.h:14:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../audio/../MediaStreamItf.h:14:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/CongestionControl.cpp:7:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/CongestionControl.h:12:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/VoIPServerConfig.cpp:7:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/VoIPServerConfig.h:13:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/PacketReassembler.cpp:5:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/PacketReassembler.h:12:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/NetworkSocket.cpp:14:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/posix/NetworkSocketPosix.h:11:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/posix/NetworkSocketPosix.cpp:7:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/posix/NetworkSocketPosix.h:11:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/MessageThread.cpp:15:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/MessageThread.h:8:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/AudioIO.cpp:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../os/android/AudioOutputAndroid.h:20:15: warning: 'Start' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../MediaStreamItf.h:24:15: note: overridden virtual function is here
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/AudioIO.cpp:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../os/android/AudioOutputAndroid.h:21:15: warning: 'Stop' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../MediaStreamItf.h:25:15: note: overridden virtual function is here
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/AudioIO.cpp:8:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/AudioIO.h:11:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../os/android/../../audio/AudioInput.h:13:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../MediaStreamItf.h:14:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/audio/../os/android/../../threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/VideoRenderer.cpp:5:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/../os/android/../../video/VideoRenderer.h:9:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/../Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/VideoSource.cpp:5:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/../os/android/../../video/VideoSource.h:12:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/../os/android/../../Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/ScreamCongestionController.cpp:23:29: warning: unused variable 'BETA_ECN' [-Wunused-const-variable]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/ScreamCongestionController.cpp:7:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/ScreamCongestionController.h:8:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/VideoRendererAndroid.cpp:87:19: warning: moving a temporary object prevents copy elision [-Wpessimizing-move]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/VideoRendererAndroid.cpp:87:19: note: remove std::move call here
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/VideoRendererAndroid.cpp:5:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/VideoRendererAndroid.h:8:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../video/VideoRenderer.h:9:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/VideoSourceAndroid.cpp:5:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/VideoSourceAndroid.h:8:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../video/VideoSource.h:12:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tg_voip_jni.cpp:17:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/AudioOutputAndroid.h:20:15: warning: 'Start' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/MediaStreamItf.h:24:15: note: overridden virtual function is here
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tg_voip_jni.cpp:17:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/AudioOutputAndroid.h:21:15: warning: 'Stop' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/MediaStreamItf.h:25:15: note: overridden virtual function is here
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tg_voip_jni.cpp:22:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/../c_utils.h:9:9: warning: 'LOGI' macro redefined [-Wmacro-redefined]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/logging.h:30:9: note: previous definition is here
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tg_voip_jni.cpp:22:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/../c_utils.h:10:9: warning: 'LOGD' macro redefined [-Wmacro-redefined]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/logging.h:29:9: note: previous definition is here
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tg_voip_jni.cpp:22:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/../c_utils.h:11:9: warning: 'LOGE' macro redefined [-Wmacro-redefined]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/logging.h:32:9: note: previous definition is here
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tg_voip_jni.cpp:22:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/../c_utils.h:12:9: warning: 'LOGV' macro redefined [-Wmacro-redefined]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/logging.h:28:9: note: previous definition is here
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tg_voip_jni.cpp:12:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/VoIPServerConfig.h:13:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/VoIPController.cpp:14:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/VoIPController.h:24:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/VideoSource.h:12:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tgcalls/NetworkManager.cpp:182:22: warning: 'set_async_resolver_factory' is deprecated: bugs.webrtc.org/12598 [-Wdeprecated-declarations]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/webrtc/api/ice_transport_interface.h:70:3: note: 'set_async_resolver_factory' has been explicitly marked deprecated here
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/webrtc/absl/base/attributes.h:674:49: note: expanded from macro 'ABSL_DEPRECATED'
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tgcalls/legacy/InstanceImplLegacy.cpp:1:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tgcalls/legacy/InstanceImplLegacy.h:6:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/VoIPController.h:24:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/VideoSource.h:12:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tgcalls/VideoCaptureInterfaceImpl.cpp:171:1: warning: field '_platformContext' will be initialized after field '_impl' [-Wreorder]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tgcalls/group/AudioStreamingPart.cpp:17:10: warning: unused function 'stringToUInt32' [-Wunused-function]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tgcalls/group/AudioStreamingPart.cpp:33:26: warning: unused function 'splitString' [-Wunused-function]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tgcalls/group/AudioStreamingPart.cpp:57:35: warning: unused function 'parseChannelUpdates' [-Wunused-function]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tgcalls/group/GroupNetworkManager.cpp:380:22: warning: 'set_async_resolver_factory' is deprecated: bugs.webrtc.org/12598 [-Wdeprecated-declarations]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/webrtc/api/ice_transport_interface.h:70:3: note: 'set_async_resolver_factory' has been explicitly marked deprecated here
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/webrtc/absl/base/attributes.h:674:49: note: expanded from macro 'ABSL_DEPRECATED'
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tgcalls/group/GroupInstanceCustomImpl.cpp:479:10: warning: private field '_countFrames' is not used [-Wunused-private-field]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/webrtc/common_video/h265/legacy_bit_buffer.cc:36:9: warning: unused function 'HighestByte' [-Wunused-function]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/webrtc/common_video/h265/legacy_bit_buffer.cc:43:9: warning: unused function 'WritePartialByte' [-Wunused-function]
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/webrtc/sdk/android/src/jni/pc/peer_connection.cc:45:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/webrtc/sdk/android/generated_peerconnection_jni/PeerConnection_jni.h:1920:17: warning: unused function 'Java_RTCConfiguration_getDisableIpv6' [-Wunused-function]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/webrtc/sdk/android/src/jni/pc/peer_connection.cc:843:13: warning: unused function 'JNI_PeerConnection_NewGetStatsSender' [-Wunused-function]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/webrtc/sdk/android/src/jni/pc/peer_connection.cc:856:13: warning: unused function 'JNI_PeerConnection_NewGetStatsReceiver' [-Wunused-function]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/org_telegram_messenger_voip_Instance.cpp:312:88: warning: adding 'jint' (aka 'int') to a string does not append to the string [-Wstring-plus-int]
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/org_telegram_messenger_voip_Instance.cpp:312:88: note: use array indexing to silence this warning
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/org_telegram_messenger_voip_Instance.cpp:20:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/tgcalls/legacy/InstanceImplLegacy.h:6:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/VoIPController.h:24:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/video/VideoSource.h:12:
+C/C++: In file included from /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/os/android/../../Buffers.h:19:
+C/C++: /home/runner/work/SealGram2/SealGram2/TMessagesProj/jni/voip/libtgvoip/threading.h:110:8: warning: private field 'maxPriority' is not used [-Wunused-private-field]
+
+> Task :TMessagesProj:externalNativeBuildBetaDebug
+> Task :TMessagesProj:mergeBetaDebugJniLibFolders
+> Task :TMessagesProj:compileBetaDebugAidl NO-SOURCE
+> Task :TMessagesProj:compileBetaDebugRenderscript NO-SOURCE
+> Task :TMessagesProj:generateBetaDebugBuildConfig
+> Task :TMessagesProj:generateBetaDebugResValues
+> Task :TMessagesProj:generateBetaDebugResources
+> Task :TMessagesProj:mergeBetaDebugNativeLibs
+> Task :TMessagesProj:packageBetaDebugResources
+> Task :TMessagesProj:createBetaDebugCompatibleScreenManifests
+> Task :TMessagesProj:extractDeepLinksBetaDebug
+> Task :TMessagesProj:parseBetaDebugLocalResources
+> Task :TMessagesProj:processBetaDebugMainManifest
+
+> Task :TMessagesProj:stripBetaDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libjnidispatch.so.
+
+> Task :TMessagesProj:processBetaDebugManifest
+> Task :TMessagesProj:javaPreCompileBetaDebug
+> Task :TMessagesProj:mergeBetaDebugShaders
+> Task :TMessagesProj:compileBetaDebugShaders NO-SOURCE
+> Task :TMessagesProj:generateBetaDebugAssets UP-TO-DATE
+> Task :TMessagesProj:mergeBetaDebugAssets
+> Task :TMessagesProj:processBetaDebugManifestForPackage
+> Task :TMessagesProj:generateBetaDebugRFile
+> Task :TMessagesProj:compressBetaDebugAssets
+> Task :TMessagesProj:l8DexDesugarLibBetaDebug
+> Task :TMessagesProj:extractBetaDebugNativeDebugMetadata
+> Task :TMessagesProj:compileBetaDebugJavaWithJavac
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :TMessagesProj:processBetaDebugJavaRes NO-SOURCE
+> Task :TMessagesProj:mergeBetaDebugJavaResource
+> Task :TMessagesProj:checkBetaDebugDuplicateClasses
+> Task :TMessagesProj:mergeLibDexBetaDebug
+> Task :TMessagesProj:checkBetaDebugAarMetadata
+> Task :TMessagesProj:mapBetaDebugSourceSetPaths
+> Task :TMessagesProj:desugarBetaDebugFileDependencies
+
+> Task :TMessagesProj:mergeBetaDebugResources
+/home/runner/work/SealGram2/SealGram2/TMessagesProj/src/main/res/values/strings.xml:1425:4: Multiple substitutions specified in non-positional format of string resource string/ForwardingFromNameAndMessage. Did you mean to add the formatted="false" attribute?
+/home/runner/work/SealGram2/SealGram2/TMessagesProj/src/main/res/values/strings.xml:6006:4: Multiple substitutions specified in non-positional format of string resource string/NotificationTopicExceptionsDesctription_few. Did you mean to add the formatted="false" attribute?
+/home/runner/work/SealGram2/SealGram2/TMessagesProj/src/main/res/values/strings.xml:6003:4: Multiple substitutions specified in non-positional format of string resource string/NotificationTopicExceptionsDesctription_many. Did you mean to add the formatted="false" attribute?
+/home/runner/work/SealGram2/SealGram2/TMessagesProj/src/main/res/values/strings.xml:6007:4: Multiple substitutions specified in non-positional format of string resource string/NotificationTopicExceptionsDesctription_one. Did you mean to add the formatted="false" attribute?
+/home/runner/work/SealGram2/SealGram2/TMessagesProj/src/main/res/values/strings.xml:6004:4: Multiple substitutions specified in non-positional format of string resource string/NotificationTopicExceptionsDesctription_other. Did you mean to add the formatted="false" attribute?
+/home/runner/work/SealGram2/SealGram2/TMessagesProj/src/main/res/values/strings.xml:1495:4: Multiple substitutions specified in non-positional format of string resource string/NotificationTopicExceptionsDesctription_two. Did you mean to add the formatted="false" attribute?
+/home/runner/work/SealGram2/SealGram2/TMessagesProj/src/main/res/values-ko/strings.xml:3433:4: Multiple substitutions specified in non-positional format of string resource string/CallEmojiKeyTooltip. Did you mean to add the formatted="false" attribute?
+
+> Task :TMessagesProj:mergeBetaDebugNativeDebugMetadata
+> Task :TMessagesProj:mergeExtDexBetaDebug
+> Task :TMessagesProj:validateSigningBetaDebug
+> Task :TMessagesProj:writeBetaDebugAppMetadata
+> Task :TMessagesProj:writeBetaDebugSigningConfigVersions
+warn: removing resource org.tyulengram.beta:string/ActionGroupCallEnded without required default value.
+warn: removing resource org.tyulengram.beta:string/ActionGroupCallJustStarted without required default value.
+warn: removing resource org.tyulengram.beta:string/CancelForward without required default value.
+warn: removing resource org.tyulengram.beta:string/CancelForwardMessage without required default value.
+warn: removing resource org.tyulengram.beta:string/ClearRecentEmoji without required default value.
+warn: removing resource org.tyulengram.beta:string/DrawerGhostModeToggle without required default value.
+warn: removing resource org.tyulengram.beta:string/EnableAds without required default value.
+warn: removing resource org.tyulengram.beta:string/KeepMediaInfo without required default value.
+warn: removing resource org.tyulengram.beta:string/PermissionNoAudio without required default value.
+warn: removing resource org.tyulengram.beta:string/PermissionNoAudioVideo without required default value.
+warn: removing resource org.tyulengram.beta:string/PermissionNoCamera without required default value.
+warn: removing resource org.tyulengram.beta:string/PermissionStorage without required default value.
+warn: removing resource org.tyulengram.beta:string/PrivacyProfilePhotoInfo2 without required default value.
+warn: removing resource org.tyulengram.beta:string/QRCodePermissionNoCamera without required default value.
+warn: removing resource org.tyulengram.beta:string/SelectOtherChat without required default value.
+warn: removing resource org.tyulengram.beta:string/SendOnlinePackets without required default value.
+warn: removing resource org.tyulengram.beta:string/SendReadPackets without required default value.
+warn: removing resource org.tyulengram.beta:string/SendUploadProgress without required default value.
+warn: removing resource org.tyulengram.beta:string/ShowFromChannel without required default value.
+warn: removing resource org.tyulengram.beta:string/TerminateSessionInfo without required default value.
+warn: removing resource org.tyulengram.beta:string/UserRestrictionsDisabled without required default value.
+warn: removing resource org.tyulengram.beta:string/VideoPreviewDesrciption without required default value.
+warn: removing resource org.tyulengram.beta:string/VoipGroupEndedStartNew without required default value.
+warn: removing resource org.tyulengram.beta:string/VoipGroupInvitedToVoiceChat without required default value.
+warn: removing resource org.tyulengram.beta:string/VoipGroupJoinCall without required default value.
+warn: removing resource org.tyulengram.beta:string/VoipGroupMuteMemberAlertText without required default value.
+warn: removing resource org.tyulengram.beta:string/VoipGroupStartAs without required default value.
+warn: removing resource org.tyulengram.beta:string/VoipNeedMicCameraPermission without required default value.
+warn: removing resource org.tyulengram.beta:string/VoipNeedMicPermission without required default value.
+
+> Task :TMessagesProj:processBetaDebugResources
+> Task :TMessagesProj:dexBuilderBetaDebug
+> Task :TMessagesProj:mergeProjectDexBetaDebug
+> Task :TMessagesProj:packageBetaDebug
+> Task :TMessagesProj:createBetaDebugApkListingFileRedirect
+> Task :TMessagesProj:assembleBetaDebug
+
+0 problems were found storing the configuration cache.
+
+See the complete report at file:///home/runner/work/SealGram2/SealGram2/build/reports/configuration-cache/pzo2v986rw2g3fknmrx3yu55/2q7g4cyzmj813414uk5mqdveo/configuration-cache-report.html
+
+BUILD SUCCESSFUL in 21m 32s
+42 actionable tasks: 42 executed
+Configuration cache entry stored.
