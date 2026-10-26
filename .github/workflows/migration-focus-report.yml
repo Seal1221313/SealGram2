@@ -113,6 +113,13 @@ jobs:
           ]
           pathlib.Path("focused-migration-report.md").write_text("\n".join(sections), encoding="utf-8")
           print("\n".join(sections[:10]))
+          print("\n## Candidate source paths for the next porting pass")
+          candidates = sorted(set(p for p in old_only if p.endswith((".java", ".kt")) and (
+              "/ui/" in p or "/messenger/" in p or any(k in p.lower() for k in keywords)
+          )))
+          for p in candidates[:450]:
+              print(p)
+          print(f"\nCandidate paths shown: {min(len(candidates), 450)} / {len(candidates)}")
           PY
 
       - name: Upload focused report
