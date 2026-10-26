@@ -53,3 +53,4 @@ No Android build or clean-install network capture has been run after these commi
 - Settings "About" row no longer opens an update dialog; source link points to this repo.
 - Removed Google/Mozilla DNS-over-HTTPS tasks, Firebase DNS task and the Google-fronted hostname resolver; hostnames now resolve through the system resolver only.
 - Firebase SMS verification disabled in login settings.
+- Removed Yandex static maps (URL builder, provider option, server-config hook) and disabled Coub/Aparat embedded players.

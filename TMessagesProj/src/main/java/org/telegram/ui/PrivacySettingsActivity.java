@@ -1007,9 +1007,8 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                             case 2:
                                 value = LocaleController.getString("MapPreviewProviderNobody", R.string.MapPreviewProviderNobody);
                                 break;
-                            case 3:
                             default:
-                                value = LocaleController.getString("MapPreviewProviderYandex", R.string.MapPreviewProviderYandex);
+                                value = LocaleController.getString("MapPreviewProviderNobody", R.string.MapPreviewProviderNobody);
                                 break;
                         }
                         textCell.setTextAndValue(LocaleController.getString("MapPreviewProvider", R.string.MapPreviewProvider), value, secretMapUpdate, true);
