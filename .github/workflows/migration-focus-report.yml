@@ -1,0 +1,124 @@
+name: Focused SealGram migration report
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - upgrade/telegram-13.1.1
+    paths:
+      - ".github/workflows/migration-focus-report.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  focused-report:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout SealGram mod
+        uses: actions/checkout@v4
+        with:
+          ref: upgrade/telegram-13.1.1
+          path: sealgram-old
+          fetch-depth: 1
+          submodules: false
+
+      - name: Checkout official Telegram 13.1.1
+        uses: actions/checkout@v4
+        with:
+          repository: DrKLO/Telegram
+          ref: 3de37c8cfb039452be7398909461da6288babf15
+          path: telegram-upstream
+          fetch-depth: 1
+          submodules: false
+
+      - name: Build focused source report
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, pathlib, subprocess
+
+          roots = {"SealGram": pathlib.Path("sealgram-old"), "Telegram 13.1.1": pathlib.Path("telegram-upstream")}
+          skip_parts = {".git", ".gradle", ".idea", "build", ".cxx", "third_party", "jni"}
+          focus_ext = {".java", ".kt", ".xml", ".gradle", ".kts", ".properties", ".pro", ".cpp", ".h", ".hpp", ".c", ".mk"}
+          keywords = ("ayu", "seal", "ghost", "privacy", "music", "mod", "hidden", "inspector", "translation", "custom", "proxy", "telemetry", "analytics")
+
+          def tracked(root):
+              raw = subprocess.check_output(["git", "-C", str(root), "ls-files", "-z"])
+              result = []
+              for name in raw.decode().split("\0"):
+                  if not name:
+                      continue
+                  p = pathlib.PurePosixPath(name)
+                  if any(part in skip_parts for part in p.parts):
+                      continue
+                  if p.suffix.lower() in focus_ext:
+                      result.append(name)
+              return set(result)
+
+          def digest(root, name):
+              p = root / name
+              if not p.is_file():
+                  return None
+              h = hashlib.sha256()
+              with p.open("rb") as f:
+                  for chunk in iter(lambda: f.read(1024 * 1024), b""):
+                      h.update(chunk)
+              return h.hexdigest()
+
+          old, new = roots["SealGram"], roots["Telegram 13.1.1"]
+          a, b = tracked(old), tracked(new)
+          old_only, new_only = sorted(a-b), sorted(b-a)
+          shared = sorted(a & b)
+          changed = [p for p in shared if digest(old, p) != digest(new, p)]
+
+          def relevant(p):
+              low = p.lower()
+              return any(k in low for k in keywords)
+
+          sections = [
+              "# Focused SealGram → Telegram 13.1.1 migration report",
+              "",
+              "This report filters to source/config/resource file types and excludes generated/build output and native third-party dependency trees. A path difference is a candidate for review, not proof that a feature can be copied unchanged.",
+              "",
+              f"- SealGram focused tracked files: {len(a)}",
+              f"- Upstream focused tracked files: {len(b)}",
+              f"- SealGram-only paths: {len(old_only)}",
+              f"- Upstream-only paths: {len(new_only)}",
+              f"- Same-path source/config/resource files with different content: {len(changed)}",
+              "",
+              "## Same-path changed files (review for porting)",
+              *[f"- `{p}`" for p in changed],
+              "",
+              "## SealGram-only source/config/resource files (possible mod features)",
+              *[f"- `{p}`" for p in old_only],
+              "",
+              "## Upstream-only files with likely feature-related names",
+              *[f"- `{p}`" for p in new_only if relevant(p)],
+              "",
+              "## Prioritized candidates by likely mod-related path/name",
+              *[f"- `{p}`" for p in sorted(set(changed + old_only)) if relevant(p)],
+              "",
+              "## Important configuration files",
+              *[f"- {label}: `{p}` ({'present in both trees' if p in a and p in b else 'SealGram only' if p in a else 'upstream only' if p in b else 'not found in focused tracked files'})"
+                for label, p in [
+                  ("TL schema", "TMessagesProj/src/main/java/org/telegram/tgnet/TLRPC.java"),
+                  ("Main profile UI", "TMessagesProj/src/main/java/org/telegram/ui/ProfileActivity.java"),
+                  ("Upstream profile UI", "TMessagesProj/src/main/java/org/telegram/ui/ProfileActivity2.java"),
+                  ("Gradle settings", "settings.gradle"),
+                  ("App module Gradle", "TMessagesProj/build.gradle"),
+                  ("App manifest", "TMessagesProj/src/main/AndroidManifest.xml"),
+                ]],
+              ""
+          ]
+          pathlib.Path("focused-migration-report.md").write_text("\n".join(sections), encoding="utf-8")
+          print("\n".join(sections[:10]))
+          PY
+
+      - name: Upload focused report
+        uses: actions/upload-artifact@v4
+        with:
+          name: sealgram-focused-migration-report
+          path: focused-migration-report.md
+          if-no-files-found: error
+          retention-days: 14
