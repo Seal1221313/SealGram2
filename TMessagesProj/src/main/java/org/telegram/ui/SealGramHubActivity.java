@@ -246,14 +246,14 @@ public class SealGramHubActivity {
                 bar.setProgress(0);
             }
             SealStt.download(code, (text, pct) -> {
-                if (isFinished || isFinishing()) return;
+                if (isFinishing()) return;
                 if (status != null) status.setText(text);
                 if (bar != null && pct >= 0) bar.setProgress(pct);
                 if (pct < 0 && (text.startsWith("Помилка") || text.startsWith("Немає"))) {
                     new AlertDialog.Builder(ctx).setTitle(SealGramI18n.t("HubModelDownloadFailed")).setMessage(text).setPositiveButton(SealGramI18n.t("CommonOK"), null).show();
                 }
             }, () -> {
-                if (isFinished || isFinishing()) return;
+                if (isFinishing()) return;
                 if (SealStt.installed(code)) SealStt.setLang(code);
                 fill();
             });

@@ -155,7 +155,7 @@ public class SealAutoReply implements NotificationCenter.NotificationCenterDeleg
             String timeKey = "ar_t_" + account + "_" + dialogId;
             if (now - p.getLong(timeKey, 0) < 600000L) return;
             p.edit().putLong(stampKey, active).putLong(timeKey, now).apply();
-            SendMessagesHelper.getInstance(account).sendMessage(SendMessagesHelper.SendMessageParams.of(text(), dialogId));
+            SendMessagesHelper.getInstance(account).sendMessage(text(), dialogId, null, null, null, true, null, null, null, true, 0, null, false);
         } catch (Throwable t) {
             FileLog.e(t);
         }

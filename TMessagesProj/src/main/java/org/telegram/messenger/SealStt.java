@@ -409,8 +409,8 @@ public class SealStt {
             }
             FileLoader loader = FileLoader.getInstance(msg.currentAccount);
             addCandidate(candidates, loader.getPathToMessage(msg.messageOwner));
-            addCandidate(candidates, loader.getPathToMessage(msg.messageOwner, false, false));
-            addCandidate(candidates, loader.getPathToMessage(msg.messageOwner, true, true));
+            addCandidate(candidates, loader.getPathToMessage(msg.messageOwner, false));
+            addCandidate(candidates, loader.getPathToMessage(msg.messageOwner, true));
             if (document != null) {
                 addCandidate(candidates, loader.getPathToAttach(document));
                 addCandidate(candidates, loader.getPathToAttach(document, null, true));
