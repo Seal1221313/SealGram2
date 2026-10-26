@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'TMessagesProj/build.gradle'
+      - 'TMessagesProj/src/main/res/values/extera.xml'
+      - 'TMessagesProj/src/main/res/values/strings.xml'
       - '.github/workflows/build.yml'
   workflow_dispatch:
     inputs:
@@ -68,9 +70,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           APK=$(find TMessagesProj/build/outputs/apk -name "*.apk" | head -1)
-          cp "$APK" TyulenGramBeta.apk
+          cp "$APK" SealGram.apk
           gh release delete beta --cleanup-tag -y || true
-          gh release create beta TyulenGramBeta.apk --title "Тюлень Грам Бета" --notes "Debug build ${{ github.sha }}" --prerelease
+          gh release create beta SealGram.apk --title "SealGram" --notes "SealGram beta build ${{ github.sha }}" --prerelease
 
       - name: Publish direct APK download
         if: success()
@@ -78,9 +80,9 @@ jobs:
           {
             echo "## SealGram — готовый APK"
             echo
-            echo "[**Скачать APK напрямую**](https://github.com/${GITHUB_REPOSITORY}/releases/download/beta/TyulenGramBeta.apk)"
+            echo "[**Скачать APK напрямую**](https://github.com/${GITHUB_REPOSITORY}/releases/download/beta/SealGram.apk)"
             echo
-            echo "Файл: `TyulenGramBeta.apk`"
+            echo "Файл: `SealGram.apk`"
             echo
             echo "Сборка: `${GITHUB_SHA}`"
             echo
