@@ -72,6 +72,21 @@ jobs:
           gh release delete beta --cleanup-tag -y || true
           gh release create beta TyulenGramBeta.apk --title "Тюлень Грам Бета" --notes "Debug build ${{ github.sha }}" --prerelease
 
+      - name: Publish direct APK download
+        if: success()
+        run: |
+          {
+            echo "## SealGram — готовый APK"
+            echo
+            echo "[**Скачать APK напрямую**](https://github.com/${GITHUB_REPOSITORY}/releases/download/beta/TyulenGramBeta.apk)"
+            echo
+            echo "Файл: `TyulenGramBeta.apk`"
+            echo
+            echo "Сборка: `${GITHUB_SHA}`"
+            echo
+            echo "> ZIP в разделе Actions → Artifacts — это архив GitHub Actions. Для установки без распаковки скачивайте APK по ссылке выше."
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: APK audit
         if: always()
         run: |
