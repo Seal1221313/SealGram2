@@ -13,19 +13,30 @@ This branch is an isolated migration workspace. The current source tree is still
 - Profile music is not a standalone view-only change. It depends on current Telegram TL schema/generated types, saved-music API requests and response handling, profile UI wiring, resources, and event/data lifecycle.
 - Current app has its own package/version/build pipeline and SealGram/AyuGram modifications. These must be retained intentionally rather than overwritten by an upstream directory copy.
 
+## Migration scope: full mod update, not a single feature
+
+The target is to update the whole existing SealGram/AyuGram-derived mod onto Telegram 13.1.1, preserving and re-porting the mod's applicable features—not just profile music. The compatibility inventory must cover:
+- UI/screens, profile and chat interactions, settings, themes and localization;
+- message/media handling, stickers, reactions, calls and protocol/TL changes;
+- custom mod features, toggles, storage, event handlers, background work and notifications;
+- app identity, build variants, signing, permissions, privacy/network behavior and third-party integrations;
+- native/JNI code, libraries/submodules, resources, generated sources and build scripts.
+
+Each feature needs an explicit outcome: ported, intentionally removed, replaced by upstream, or blocked with a reason. A successful compile alone does not prove feature parity.
+
 ## Migration order
 
-1. A dedicated workflow `.github/workflows/upstream-baseline.yml` now checks out the exact official upstream commit with recursive submodules, installs SDK 36 / NDK 27.2.12479018 / CMake 3.22.1, builds `:TMessagesProj_App:assembleAfatDebug`, verifies the APK, and stores it as a short-lived artifact. This establishes whether the upstream baseline itself builds in CI before any custom code is ported.
-2. Port app identity, package/build variants, signing configuration, privacy choices, and existing SealGram UI/features into that base.
-3. Port protocol/schema changes required for profile music and regenerate/verify generated TL code using the upstream build tooling.
-4. Port profile music UI and all referenced resources/event handling as one coherent change.
-5. Port remaining SealGram/AyuGram features in small, reviewable groups.
-6. Build debug APK in CI, inspect build logs, run APK/package checks, and only then consider a release.
+1. **Passed:** workflow `.github/workflows/upstream-baseline.yml` checked out the exact official upstream commit with recursive submodules, installed SDK 36 / NDK 27.2.12479018 / CMake 3.22.1, built `:TMessagesProj_App:assembleAfatDebug`, verified the APK, and uploaded the artifact. Run: https://github.com/Seal1221313/SealGram2/actions/runs/40386629034.
+2. Produce a complete file-level inventory between the old SealGram source and upstream 13.1.1: files unique to each tree and same-path files with different contents.
+3. Use that inventory plus source history to map every custom feature to its implementation files and dependencies; group the migration by protocol, app/build structure, UI, settings/storage, media, networking/privacy, and native code.
+4. Establish the new upstream tree as the base, then port the whole set of compatible custom changes in reviewable batches while resolving conflicts against the new Telegram APIs and TL schema.
+5. Run compilation after each batch, add regression checks for preserved mod behavior, and maintain a feature parity checklist with explicit port/remove/replace/block status.
+6. Run final CI build, APK signature/alignment/package audit, and regression checks before any merge or release.
 
 ## Current safety state
 
 - Do not merge this branch into `main` until source migration and CI checks pass.
 - The branch workflow has been adjusted so a push to this migration branch can run CI without publishing or replacing the `beta` release. Release publishing remains restricted to `main`.
 - The existing SealGram debug build on this branch completed successfully in GitHub Actions (run `40379880617`); APK verification and APK audit also passed. This validates the current old source tree and the isolated CI path only, not the Telegram 13.1.1 migration.
-- Next gate: wait for the dedicated upstream baseline workflow to finish. If it passes, begin porting app/build identity and custom features against that source; if it fails, fix the baseline first. Do not interpret the successful current build as evidence that the new Telegram source has been integrated.
+- The official Telegram 13.1.1 baseline build has passed. The old SealGram build also passed separately. The next gate is the complete old-vs-upstream source inventory and feature map; neither success means the old mod has already been ported.
 - No claim is made that the 13.1.1 source migration or profile music port is complete.
