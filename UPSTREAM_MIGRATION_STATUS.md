@@ -26,5 +26,6 @@ This branch is an isolated migration workspace. The current source tree is still
 
 - Do not merge this branch into `main` until source migration and CI checks pass.
 - The branch workflow has been adjusted so a push to this migration branch can run CI without publishing or replacing the `beta` release. Release publishing remains restricted to `main`.
-- The Android build triggered by the workflow change was still running at the last status check; it has not yet been reported as successful.
+- The existing SealGram debug build on this branch completed successfully in GitHub Actions (run `40379880617`); APK verification and APK audit also passed. This validates the current old source tree and the isolated CI path only, not the Telegram 13.1.1 migration.
+- Next gate: establish and build the upstream 13.1.1 baseline with its pinned submodules, then port the app/build identity and custom features. Do not interpret the successful current build as evidence that the new Telegram source has been integrated.
 - No claim is made that the 13.1.1 source migration or profile music port is complete.
