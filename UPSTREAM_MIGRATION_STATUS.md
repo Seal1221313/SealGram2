@@ -27,7 +27,7 @@ Each feature needs an explicit outcome: ported, intentionally removed, replaced 
 ## Migration order
 
 1. **Passed:** workflow `.github/workflows/upstream-baseline.yml` checked out the exact official upstream commit with recursive submodules, installed SDK 36 / NDK 27.2.12479018 / CMake 3.22.1, built `:TMessagesProj_App:assembleAfatDebug`, verified the APK, and uploaded the artifact. Run: https://github.com/Seal1221313/SealGram2/actions/runs/40386629034.
-2. Produce a complete file-level inventory between the old SealGram source and upstream 13.1.1: files unique to each tree and same-path files with different contents.
+2. **Running:** workflow `.github/workflows/migration-inventory.yml` compares the complete old SealGram tree against the pinned upstream 13.1.1 tree and uploads a report listing files unique to each tree and same-path files with different contents. Run: https://github.com/Seal1221313/SealGram2/actions/runs/40394334860.
 3. Use that inventory plus source history to map every custom feature to its implementation files and dependencies; group the migration by protocol, app/build structure, UI, settings/storage, media, networking/privacy, and native code.
 4. Establish the new upstream tree as the base, then port the whole set of compatible custom changes in reviewable batches while resolving conflicts against the new Telegram APIs and TL schema.
 5. Run compilation after each batch, add regression checks for preserved mod behavior, and maintain a feature parity checklist with explicit port/remove/replace/block status.
