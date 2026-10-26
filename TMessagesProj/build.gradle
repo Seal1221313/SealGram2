@@ -148,7 +148,7 @@ android {
             minifyEnabled false
             shrinkResources false
             multiDexEnabled true
-            zipAlignEnabled false
+            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             ndk.debugSymbolLevel = 'FULL'
             buildConfigField "boolean", "DEBUG_VERSION", "true"
