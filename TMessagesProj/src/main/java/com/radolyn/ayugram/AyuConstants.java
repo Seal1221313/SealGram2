@@ -35,7 +35,7 @@ public class AyuConstants {
     public static String AYU_DATABASE = "ayu-data";
 
     public static String APP_GITHUB = "Seal1221313/SealGram2";
-    public static String APP_NAME = "SealGram2";
+    public static String APP_NAME = "SealGramBeta";
 
     public static String BUILD_STORE_PACKAGE = "com.android.vending";
     public static String BUILD_ORIGINAL_PACKAGE = "org.telegram.messenger";
