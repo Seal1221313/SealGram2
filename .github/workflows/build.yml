@@ -78,6 +78,18 @@ jobs:
           set -o pipefail
           ./gradlew --no-daemon --stacktrace "${{ inputs.task || ':TMessagesProj:assembleBetaDebug' }}" 2>&1 | tee build.log
 
+      - name: Verify APK before publishing
+        if: success()
+        run: |
+          set -euo pipefail
+          APK=$(find TMessagesProj/build/outputs/apk -name "*.apk" -type f | head -n 1)
+          test -n "$APK"
+          echo "APK: $APK"
+          "$ANDROID_HOME/build-tools/33.0.1/zipalign" -c -v 4 "$APK"
+          "$ANDROID_HOME/build-tools/33.0.1/apksigner" verify --verbose --print-certs "$APK"
+          "$ANDROID_HOME/build-tools/33.0.1/aapt2" dump badging "$APK" | head -n 8
+          sha256sum "$APK"
+
       - name: Release APK
         if: success()
         env:
