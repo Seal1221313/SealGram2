@@ -57,6 +57,16 @@ jobs:
           set -o pipefail
           ./gradlew --no-daemon --stacktrace ${{ inputs.task }} 2>&1 | tee build.log
 
+      - name: Release APK
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          APK=$(find TMessagesProj/build/outputs/apk -name "*.apk" | head -1)
+          cp "$APK" TyulenGramBeta.apk
+          gh release delete beta --cleanup-tag -y || true
+          gh release create beta TyulenGramBeta.apk --title "Тюлень Грам Бета" --notes "Debug build ${{ github.sha }}" --prerelease
+
       - name: APK audit
         if: always()
         run: |
