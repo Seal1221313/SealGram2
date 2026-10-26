@@ -15,7 +15,7 @@ This branch is an isolated migration workspace. The current source tree is still
 
 ## Migration order
 
-1. Establish the official upstream source/build structure in a separate working tree and confirm its own build configuration.
+1. A dedicated workflow `.github/workflows/upstream-baseline.yml` now checks out the exact official upstream commit with recursive submodules, installs SDK 36 / NDK 27.2.12479018 / CMake 3.22.1, builds `:TMessagesProj_App:assembleAfatDebug`, verifies the APK, and stores it as a short-lived artifact. This establishes whether the upstream baseline itself builds in CI before any custom code is ported.
 2. Port app identity, package/build variants, signing configuration, privacy choices, and existing SealGram UI/features into that base.
 3. Port protocol/schema changes required for profile music and regenerate/verify generated TL code using the upstream build tooling.
 4. Port profile music UI and all referenced resources/event handling as one coherent change.
@@ -27,5 +27,5 @@ This branch is an isolated migration workspace. The current source tree is still
 - Do not merge this branch into `main` until source migration and CI checks pass.
 - The branch workflow has been adjusted so a push to this migration branch can run CI without publishing or replacing the `beta` release. Release publishing remains restricted to `main`.
 - The existing SealGram debug build on this branch completed successfully in GitHub Actions (run `40379880617`); APK verification and APK audit also passed. This validates the current old source tree and the isolated CI path only, not the Telegram 13.1.1 migration.
-- Next gate: establish and build the upstream 13.1.1 baseline with its pinned submodules, then port the app/build identity and custom features. Do not interpret the successful current build as evidence that the new Telegram source has been integrated.
+- Next gate: wait for the dedicated upstream baseline workflow to finish. If it passes, begin porting app/build identity and custom features against that source; if it fails, fix the baseline first. Do not interpret the successful current build as evidence that the new Telegram source has been integrated.
 - No claim is made that the 13.1.1 source migration or profile music port is complete.
