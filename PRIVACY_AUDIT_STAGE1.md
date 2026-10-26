@@ -51,3 +51,5 @@ No Android build or clean-install network capture has been run after these commi
 - Disabled Telegram's server-driven app update flow: `checkAppUpdate` is a no-op, `SharedConfig.setNewAppVersionAvailable` never stores a pending update, stored pending updates are ignored.
 - Removed `REQUEST_INSTALL_PACKAGES` and `REQUEST_DELETE_PACKAGES` permissions, and the install-referrer receiver (`RefererReceiver`).
 - Settings "About" row no longer opens an update dialog; source link points to this repo.
+- Removed Google/Mozilla DNS-over-HTTPS tasks, Firebase DNS task and the Google-fronted hostname resolver; hostnames now resolve through the system resolver only.
+- Firebase SMS verification disabled in login settings.
