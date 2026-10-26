@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [main]
+    branches: [main, "upgrade/telegram-13.1.1"]
     paths:
       - 'TMessagesProj/build.gradle'
       - 'TMessagesProj/src/main/res/values/extera.xml'
@@ -92,7 +92,7 @@ jobs:
           sha256sum "$APK"
 
       - name: Release APK
-        if: success()
+        if: success() && github.ref == 'refs/heads/main'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -102,7 +102,7 @@ jobs:
           gh release create beta SealGram.apk --title "SealGram" --notes "SealGram beta build ${{ github.sha }}" --prerelease
 
       - name: Publish direct APK download
-        if: success()
+        if: success() && github.ref == 'refs/heads/main'
         run: |
           {
             echo "## SealGram — готовый APK"
@@ -132,8 +132,16 @@ jobs:
             echo "== suspicious classes"; cat classes*.dex | strings -n 6 | grep -iE "firebase|crashlytics|appcenter|appsflyer|facebook|adjust|mixpanel|amplitude|sentry|appmetrica|ayugram\.one|exteragram\.app|DexClassLoader" | sort -u | head -80
           } > /tmp/l/audit.txt 2>&1
 
-      - name: Publish log
+
+      - uses: actions/upload-artifact@v4
         if: always()
+        with:
+          name: sealgram-debug
+          path: TMessagesProj/build/outputs/apk/**/*.apk
+          if-no-files-found: warn
+
+      - name: Publish log
+        if: failure()
         run: |
           mkdir -p /tmp/l
           grep -nE "error:|FAILED|What went wrong|Execution failed|Could not|cannot find symbol|symbol:|location:|does not exist" -A2 build.log | head -c 150000 > /tmp/l/errors.txt || true
@@ -147,8 +155,3 @@ jobs:
           git add errors.txt tail.txt audit.txt
           git commit -qm "build log"
           git push -f origin ci-logs
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: sealgram-debug
-          path: TMessagesProj/build/outputs/apk/**/*.apk
