@@ -5607,8 +5607,15 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
+    public void onUserInteraction() {
+        super.onUserInteraction();
+        org.telegram.messenger.SealAutoReply.touch();
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
+        org.telegram.messenger.SealAutoReply.touchNow();
         isResumed = false;
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 4096);
         ApplicationLoader.mainInterfacePaused = true;
@@ -5742,6 +5749,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     @Override
     protected void onResume() {
         super.onResume();
+        org.telegram.messenger.SealAutoReply.touchNow();
         isResumed = true;
         if (onResumeStaticCallback != null) {
             onResumeStaticCallback.run();

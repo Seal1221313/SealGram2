@@ -1732,6 +1732,8 @@ public class AndroidUtilities {
     }
 
     public static Typeface getTypeface(String assetPath) {
+        Typeface sealFont = SealFont.get(assetPath);
+        if (sealFont != null) return sealFont;
         synchronized (typefaceCache) {
             if (!typefaceCache.containsKey(assetPath)) {
                 Typeface t = null;

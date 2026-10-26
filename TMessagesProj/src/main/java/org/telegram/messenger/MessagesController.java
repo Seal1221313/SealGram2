@@ -1202,6 +1202,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public MessagesController(int num) {
         super(num);
+        SealAutoReply.attach(num);
         ImageLoader.getInstance();
         getMessagesStorage();
         getLocationController();

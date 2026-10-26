@@ -52,6 +52,10 @@ public class MainPreferencesActivity extends BasePreferencesActivity {
     private int generalRow;
     private int appearanceRow;
     private int chatsRow;
+    private int sealVoiceToTextRow;
+    private int sealAutoReplyRow;
+    private int sealVoiceChangerRow;
+    private int sealStyleRow;
     private int otherRow;
 
     private int categoryDividerRow;
@@ -197,6 +201,10 @@ public class MainPreferencesActivity extends BasePreferencesActivity {
         generalRow = newRow();
         appearanceRow = newRow();
         chatsRow = newRow();
+        sealVoiceToTextRow = newRow();
+        sealAutoReplyRow = newRow();
+        sealVoiceChangerRow = newRow();
+        sealStyleRow = newRow();
         otherRow = newRow();
         categoryDividerRow = newRow();
 
@@ -222,6 +230,14 @@ public class MainPreferencesActivity extends BasePreferencesActivity {
             presentFragment(new AppearancePreferencesActivity());
         } else if (position == chatsRow) {
             presentFragment(new ChatsPreferencesActivity());
+        } else if (position == sealVoiceToTextRow) {
+            presentFragment(new org.telegram.ui.SealGramHubActivity.Page(4));
+        } else if (position == sealAutoReplyRow) {
+            presentFragment(new org.telegram.ui.SealGramHubActivity.Page(5));
+        } else if (position == sealVoiceChangerRow) {
+            presentFragment(new org.telegram.ui.SealGramVoiceActivity());
+        } else if (position == sealStyleRow) {
+            presentFragment(new org.telegram.ui.SealGramStyleActivity());
         } else if (position == otherRow) {
             presentFragment(new OtherPreferencesActivity());
         } else if (position == generalRow) {
@@ -269,6 +285,14 @@ public class MainPreferencesActivity extends BasePreferencesActivity {
                         textCell.setTextAndIcon(LocaleController.getString("Appearance", R.string.Appearance), R.drawable.msg_theme, true);
                     } else if (position == chatsRow) {
                         textCell.setTextAndIcon(LocaleController.getString("SearchAllChatsShort", R.string.SearchAllChatsShort), R.drawable.msg_discussion, true);
+                    } else if (position == sealVoiceToTextRow) {
+                        textCell.setTextAndIcon(org.telegram.messenger.SealGramI18n.t("HubVoiceToText"), R.drawable.msg_voice_unmuted, true);
+                    } else if (position == sealAutoReplyRow) {
+                        textCell.setTextAndIcon(org.telegram.messenger.SealGramI18n.t("HubAutoReply"), R.drawable.msg_edit, true);
+                    } else if (position == sealVoiceChangerRow) {
+                        textCell.setTextAndIcon(org.telegram.messenger.SealGramI18n.t("VoiceTitle"), R.drawable.msg_voicechat, true);
+                    } else if (position == sealStyleRow) {
+                        textCell.setTextAndIcon(org.telegram.messenger.SealGramI18n.t("StyleTitle"), R.drawable.msg_palette, true);
                     } else if (position == otherRow) {
                         textCell.setTextAndIcon(LocaleController.getString("LocalOther", R.string.LocalOther), R.drawable.msg_fave, false);
                     }else if (position == channelRow) {

@@ -166,6 +166,7 @@ public class WebRtcAudioRecord {
       Logging.d(TAG, "AudioRecordThread" + WebRtcAudioUtils.getThreadInfo());
 
       long lastTime = System.nanoTime();
+      org.telegram.messenger.SealVoice.Processor sealVoice = org.telegram.messenger.SealVoice.create(requestedSampleRate > 0 ? requestedSampleRate : 48000);
       while (keepAlive) {
         int bytesRead = audioRecord.read(byteBuffer, byteBuffer.capacity());
         int deviceBytesRead;
@@ -191,6 +192,12 @@ public class WebRtcAudioRecord {
                 mixed = -32768;
               }
               byteBuffer.putShort(a * 2, (short) mixed);
+            }
+          }
+          if (!microphoneMute && org.telegram.messenger.SealVoice.forCalls()) {
+            try {
+              sealVoice.process(byteBuffer, bytesRead);
+            } catch (Throwable ignore) {
             }
           }
           // It's possible we've been shut down during the read, and stopRecording() tried and

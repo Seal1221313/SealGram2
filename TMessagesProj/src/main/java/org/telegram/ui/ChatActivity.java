@@ -24295,6 +24295,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             // --- AyuGram menu
 
+            if (selectedObject != null && selectedObject.isVoice() && org.telegram.messenger.SealGram.pref("stt_enabled", true) && !options.contains(9101)) {
+                items.add("Розпізнати текст (офлайн)");
+                options.add(9101);
+                icons.add(R.drawable.msg_copy);
+            }
             if (options.isEmpty() && optionsView == null) {
                 return false;
             }
@@ -25853,6 +25858,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         boolean preserveDim = false;
         switch (option) {
+            case 9101: {
+                org.telegram.messenger.SealStt.recognize(this, selectedObject);
+                break;
+            }
             case AyuConstants.OPTION_HISTORY:
                 presentFragment(new AyuMessageHistory(selectedObject));
                 break;

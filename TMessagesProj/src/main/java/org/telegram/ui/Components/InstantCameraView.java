@@ -1859,6 +1859,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 int readResult;
                 boolean done = false;
                 AudioTimestamp audioTimestamp = new AudioTimestamp();
+                org.telegram.messenger.SealVoice.Processor sealVoice = null;
                 boolean shouldUseTimestamp = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N;
 
                 while (!done) {
@@ -1905,6 +1906,13 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                                 buffer.last = true;
                             }
                             break;
+                        }
+                        if (org.telegram.messenger.SealVoice.forRound()) {
+                            try {
+                                if (sealVoice == null) sealVoice = org.telegram.messenger.SealVoice.create(audioSampleRate);
+                                sealVoice.process(byteBuffer, readResult);
+                            } catch (Throwable ignore) {
+                            }
                         }
                         if (shouldUseTimestamp) {
                             audioRecorder.getTimestamp(audioTimestamp, AudioTimestamp.TIMEBASE_MONOTONIC);
