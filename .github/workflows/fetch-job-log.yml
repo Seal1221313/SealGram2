@@ -1,0 +1,36 @@
+name: Fetch job log to ci-logs
+
+on:
+  push:
+    branches:
+      - upgrade/telegram-13.1.1
+    paths:
+      - ".github/workflows/fetch-job-log.yml"
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout ci-logs
+        uses: actions/checkout@v4
+        with:
+          ref: ci-logs
+      - name: Download job log
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p run-40396566539
+          curl -sSL -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/jobs/121831057675/logs" -o run-40396566539/job.txt
+          wc -l run-40396566539/job.txt
+      - name: Commit log
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add run-40396566539
+          git commit -m "Add job log for run 40396566539"
+          git push origin HEAD:ci-logs
