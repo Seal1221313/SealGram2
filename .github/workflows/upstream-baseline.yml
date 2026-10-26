@@ -1,0 +1,58 @@
+name: Verify Telegram 13.1.1 upstream baseline
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  upstream-baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout official Telegram 13.1.1 with submodules
+        uses: actions/checkout@v4
+        with:
+          repository: DrKLO/Telegram
+          ref: 3de37c8cfb039452be7398909461da6288babf15
+          submodules: recursive
+          fetch-depth: 1
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Install Android SDK and native toolchain
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" \
+            "platforms;android-36" \
+            "build-tools;36.0.0" \
+            "ndk;27.2.12479018" \
+            "cmake;3.22.1"
+
+      - name: Build official 13.1.1 debug APK
+        run: |
+          chmod +x ./gradlew
+          ./gradlew --no-daemon --stacktrace :TMessagesProj_App:assembleAfatDebug
+
+      - name: Verify upstream APK
+        run: |
+          set -euo pipefail
+          APK=$(find TMessagesProj_App/build/outputs/apk -name '*.apk' -type f | head -n 1)
+          test -n "$APK"
+          "$ANDROID_HOME/build-tools/36.0.0/zipalign" -c -v 4 "$APK"
+          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --verbose "$APK"
+          sha256sum "$APK"
+
+      - name: Upload upstream baseline APK
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: telegram-13.1.1-upstream-baseline
+          path: TMessagesProj_App/build/outputs/apk/**/*.apk
+          if-no-files-found: error
+          retention-days: 7
