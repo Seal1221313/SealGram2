@@ -9,7 +9,7 @@ on:
       - ".github/workflows/port-core-helpers.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   port-core-helpers:
@@ -55,6 +55,27 @@ jobs:
           sdkmanager "platforms;android-36" "build-tools;36.0.0" "ndk;27.2.12479018" "cmake;3.22.1"
           chmod +x gradlew
           ./gradlew --no-daemon --stacktrace :TMessagesProj_App:assembleAfatDebug
+
+      - name: Publish upstream-based migration branch
+        if: success()
+        working-directory: telegram-new
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p .github/workflows
+          cp ../sealgram-old/.github/workflows/port-core-helpers.yml .github/workflows/port-core-helpers.yml
+          git add TMessagesProj/src/main/java/org/telegram/messenger/SealGram.java TMessagesProj/src/main/java/org/telegram/messenger/SealGramI18n.java .github/workflows/port-core-helpers.yml
+          if git diff --cached --quiet; then
+            echo "No port changes to publish."
+            exit 0
+          fi
+          git commit -m "Port SealGram core helpers onto Telegram 13.1.1"
+          git remote add sealgram-origin "https://x-access-token:${GH_TOKEN}@github.com/Seal1221313/SealGram2.git"
+          git push sealgram-origin HEAD:refs/heads/upgrade/telegram-13.1.1-port-core
 
       - name: Upload test APK
         if: success()
