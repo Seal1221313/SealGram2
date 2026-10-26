@@ -1,0 +1,66 @@
+name: Port SealGram core helpers onto Telegram 13.1.1
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - upgrade/telegram-13.1.1
+    paths:
+      - ".github/workflows/port-core-helpers.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  port-core-helpers:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout migration branch (SealGram source)
+        uses: actions/checkout@v4
+        with:
+          ref: upgrade/telegram-13.1.1
+          path: sealgram-old
+          fetch-depth: 1
+
+      - name: Checkout official Telegram 13.1.1
+        uses: actions/checkout@v4
+        with:
+          repository: DrKLO/Telegram
+          ref: 3de37c8cfb039452be7398909461da6288babf15
+          path: telegram-new
+          fetch-depth: 1
+          submodules: recursive
+
+      - name: Port isolated SealGram preference and localization helpers
+        shell: bash
+        run: |
+          set -euo pipefail
+          old="sealgram-old/TMessagesProj/src/main/java/org/telegram/messenger"
+          new="telegram-new/TMessagesProj/src/main/java/org/telegram/messenger"
+          for file in SealGram.java SealGramI18n.java; do
+            test -s "$old/$file"
+            cp "$old/$file" "$new/$file"
+            echo "Ported candidate: $file"
+          done
+          grep -q 'class ApplicationLoader' "$new/ApplicationLoader.java"
+          echo "Core dependency ApplicationLoader exists in upstream."
+
+      - name: Build upstream with first ported helper group
+        working-directory: telegram-new
+        env:
+          ANDROID_HOME: /usr/local/lib/android/sdk
+          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager "platforms;android-36" "build-tools;36.0.0" "ndk;27.2.12479018" "cmake;3.22.1"
+          chmod +x gradlew
+          ./gradlew --no-daemon --stacktrace :TMessagesProj_App:assembleAfatDebug
+
+      - name: Upload test APK
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: telegram-13.1.1-core-helpers-smoke-test
+          path: telegram-new/TMessagesProj_App/build/outputs/apk/**/**/*.apk
+          if-no-files-found: warn
+          retention-days: 7
