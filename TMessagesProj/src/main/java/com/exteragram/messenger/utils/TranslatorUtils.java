@@ -23,6 +23,9 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -87,45 +90,24 @@ public class TranslatorUtils {
         if (TextUtils.isEmpty(text)) {
             return;
         }
-        if (!translateQueue.isAlive()) {
-            translateQueue.start();
-        }
-        translateQueue.postRunnable(() -> {
-            String uri;
-            HttpURLConnection connection;
-            try {
-                uri = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=";
-                uri += fromLang + "&tl=";
-                uri += Uri.encode(toLang);
-                uri += "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=";
-                uri += Uri.encode(text.toString());
-                connection = (HttpURLConnection) new URI(uri).toURL().openConnection();
-                connection.setRequestMethod("GET");
-                connection.setRequestProperty("User-Agent", formatUserAgent());
-                connection.setRequestProperty("Content-Type", "application/json");
-
-                StringBuilder textBuilder = new StringBuilder();
-                try (Reader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
-                    int c;
-                    while ((c = reader.read()) != -1) textBuilder.append((char) c);
+        var req = new TLRPC.TL_messages_translateText();
+        req.flags |= 2;
+        var item = new TLRPC.TL_textWithEntities();
+        item.text = text.toString();
+        req.text.add(item);
+        req.to_lang = toLang;
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(req, (response, error) -> AndroidUtilities.runOnUIThread(() -> {
+            if (response instanceof TLRPC.TL_messages_translateResult && !((TLRPC.TL_messages_translateResult) response).result.isEmpty()) {
+                String result = ((TLRPC.TL_messages_translateResult) response).result.get(0).text;
+                if (text.length() > 0 && text.charAt(0) == '\n') {
+                    result = "\n" + result;
                 }
-                JSONTokener tokener = new JSONTokener(textBuilder.toString());
-                JSONArray array = new JSONArray(tokener);
-                JSONArray array1 = array.getJSONArray(0);
-                StringBuilder result = new StringBuilder();
-                for (int i = 0; i < array1.length(); ++i) {
-                    String blockText = array1.getJSONArray(i).getString(0);
-                    if (blockText != null && !blockText.equals("null"))
-                        result.append(blockText);
+                if (onSuccess != null) {
+                    onSuccess.run(result);
                 }
-                if (text.length() > 0 && text.charAt(0) == '\n') result.insert(0, "\n");
-                if (onSuccess != null)
-                    AndroidUtilities.runOnUIThread(() -> onSuccess.run(result.toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-                if (onFail != null)
-                    AndroidUtilities.runOnUIThread(onFail::run);
+            } else if (onFail != null) {
+                onFail.run();
             }
-        });
+        }));
     }
 }
