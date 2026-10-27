@@ -1,0 +1,33 @@
+1947:2026-10-27T05:49:24.6984692Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:18: error: package org.vosk does not exist
+1950:2026-10-27T05:49:24.7166917Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:19: error: package org.vosk does not exist
+1953:2026-10-27T05:49:40.3019273Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealAutoReply.java:158: error: no suitable method found for sendMessage(String,long,<null>,<null>,<null>,boolean,<null>,<null>,<null>,boolean,int,<null>,boolean)
+1964:2026-10-27T05:49:40.3984100Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:230: error: cannot find symbol
+1969:2026-10-27T05:49:40.3987634Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:230: error: cannot find symbol
+1974:2026-10-27T05:49:40.3990793Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:433: error: cannot find symbol
+1979:2026-10-27T05:49:40.3994072Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:433: error: cannot find symbol
+1984:2026-10-27T05:49:40.3998030Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:433: error: cannot find symbol
+1989:2026-10-27T05:49:40.4001491Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:433: error: cannot find symbol
+2000:2026-10-27T05:49:40.7006822Z > Task :TMessagesProj:compileDebugJavaWithJavac FAILED
+2013:2026-10-27T05:49:40.8066599Z * What went wrong:
+2014:2026-10-27T05:49:40.8067149Z Execution failed for task ':TMessagesProj:compileDebugJavaWithJavac'.
+2016:2026-10-27T05:49:40.8068847Z   /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:18: error: package org.vosk does not exist
+2019:2026-10-27T05:49:40.8071053Z   /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:19: error: package org.vosk does not exist
+2022:2026-10-27T05:49:40.8073645Z   /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealAutoReply.java:158: error: no suitable method found for sendMessage(String,long,<null>,<null>,<null>,boolean,<null>,<null>,<null>,boolean,int,<null>,boolean)
+2033:2026-10-27T05:49:40.8084368Z   /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:230: error: cannot find symbol
+2038:2026-10-27T05:49:40.8087711Z   /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:230: error: cannot find symbol
+2043:2026-10-27T05:49:40.8090792Z   /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:433: error: cannot find symbol
+2048:2026-10-27T05:49:40.8094021Z   /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:433: error: cannot find symbol
+2053:2026-10-27T05:49:40.8097551Z   /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:433: error: cannot find symbol
+2058:2026-10-27T05:49:40.8101233Z   /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:433: error: cannot find symbol
+2074:2026-10-27T05:49:40.8137698Z org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':TMessagesProj:compileDebugJavaWithJavac'.
+2108:2026-10-27T05:49:40.8201194Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:18: error: package org.vosk does not exist
+2111:2026-10-27T05:49:40.8202920Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:19: error: package org.vosk does not exist
+2114:2026-10-27T05:49:40.8205095Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealAutoReply.java:158: error: no suitable method found for sendMessage(String,long,<null>,<null>,<null>,boolean,<null>,<null>,<null>,boolean,int,<null>,boolean)
+2125:2026-10-27T05:49:40.8214450Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:230: error: cannot find symbol
+2130:2026-10-27T05:49:40.8218001Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:230: error: cannot find symbol
+2135:2026-10-27T05:49:40.8220892Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:433: error: cannot find symbol
+2140:2026-10-27T05:49:40.8223812Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:433: error: cannot find symbol
+2145:2026-10-27T05:49:40.8226936Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:433: error: cannot find symbol
+2150:2026-10-27T05:49:40.8229806Z /home/runner/work/SealGram2/SealGram2/telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealStt.java:433: error: cannot find symbol
+2314:2026-10-27T05:49:40.8446987Z BUILD FAILED in 2m 14s
+2315:2026-10-27T05:49:41.2173966Z ##[error]Process completed with exit code 1.
