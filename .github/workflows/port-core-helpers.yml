@@ -13,8 +13,8 @@ permissions:
 
 env:
   PORT_BRANCH: upgrade/telegram-13.1.1-port-core
-  PORT_COMMIT_MESSAGE: "Port SealGram settings hub, style, auto-reply, speech and voice classes onto Telegram 13.1.1"
-  FAST_ONLY: "false"
+  PORT_COMMIT_MESSAGE: "Wire SealGram features into upstream: settings entry, auto-reply, voice changer, offline speech recognition"
+  FAST_ONLY: "true"
   PORT_FILES: >-
     messenger/SealFont.java
     messenger/SealTheme.java
@@ -91,6 +91,13 @@ jobs:
               "SendMessagesHelper.getInstance(account).sendMessage(SendMessagesHelper.SendMessageParams.of(text(), dialogId, null, null, null, true, null, null, null, true, 0, 0, null, false));",
               "SendMessageParams.of(text(), dialogId")
           PY
+
+      - name: Add entry screen and apply integration patches
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp sealgram-old/port-additions/org/telegram/ui/SealGramMenuActivity.java telegram-new/TMessagesProj/src/main/java/org/telegram/ui/SealGramMenuActivity.java
+          python3 sealgram-old/port-patches/apply_patches.py telegram-new
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
