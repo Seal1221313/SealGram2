@@ -60,6 +60,38 @@ jobs:
           test -s "$dst/messenger/SealGramI18n.java"
           grep -q "SealFont.get(assetPath)" "$dst/messenger/AndroidUtilities.java"
 
+      - name: Apply upstream compatibility patches
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import sys
+          def patch(path, old, new, marker):
+              s = open(path, encoding="utf-8").read()
+              if marker in s:
+                  print("Already patched:", path, marker)
+                  return
+              if s.count(old) != 1:
+                  sys.exit("Anchor not found exactly once in %s: %r" % (path, old))
+              open(path, "w", encoding="utf-8").write(s.replace(old, new))
+              print("Patched:", path, marker)
+
+          patch(
+              "telegram-new/TMessagesProj/build.gradle",
+              "    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'\n}",
+              "    implementation 'net.java.dev.jna:jna:5.13.0@aar'\n"
+              "    implementation('com.alphacephei:vosk-android:0.3.75') {\n"
+              "        exclude group: 'net.java.dev.jna', module: 'jna'\n"
+              "    }\n\n"
+              "    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'\n}",
+              "vosk-android:0.3.75")
+
+          patch(
+              "telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/SealAutoReply.java",
+              "SendMessagesHelper.getInstance(account).sendMessage(text(), dialogId, null, null, null, true, null, null, null, true, 0, null, false);",
+              "SendMessagesHelper.getInstance(account).sendMessage(SendMessagesHelper.SendMessageParams.of(text(), dialogId, null, null, null, true, null, null, null, true, 0, 0, null, false));",
+              "SendMessageParams.of(text(), dialogId")
+          PY
+
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
@@ -98,9 +130,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for file in $PORT_FILES; do
-            git add "TMessagesProj/src/main/java/org/telegram/$file"
-          done
+          git add TMessagesProj/build.gradle
           git add -A TMessagesProj/src
           if git diff --cached --quiet; then
             echo "No port changes to publish."
