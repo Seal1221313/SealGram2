@@ -14,7 +14,7 @@ permissions:
 env:
   PORT_BRANCH: upgrade/telegram-13.1.1-port-core
   PORT_COMMIT_MESSAGE: "Port SealGram settings hub, style, auto-reply, speech and voice classes onto Telegram 13.1.1"
-  FAST_ONLY: "true"
+  FAST_ONLY: "false"
   PORT_FILES: >-
     messenger/SealFont.java
     messenger/SealTheme.java
