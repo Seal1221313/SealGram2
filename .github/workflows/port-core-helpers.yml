@@ -14,7 +14,7 @@ permissions:
 env:
   PORT_BRANCH: upgrade/telegram-13.1.1-port-core
   PORT_COMMIT_MESSAGE: "Wire SealGram features into upstream: settings entry, auto-reply, voice changer, offline speech recognition"
-  FAST_ONLY: "true"
+  FAST_ONLY: "false"
   PORT_FILES: >-
     messenger/SealFont.java
     messenger/SealTheme.java
