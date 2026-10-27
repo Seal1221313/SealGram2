@@ -13,7 +13,18 @@ permissions:
 
 env:
   PORT_BRANCH: upgrade/telegram-13.1.1-port-core
-  PORT_COMMIT_MESSAGE: "Port SealGram font, theme and color helpers onto Telegram 13.1.1"
+  PORT_COMMIT_MESSAGE: "Port SealGram settings hub, style, auto-reply, speech and voice classes onto Telegram 13.1.1"
+  FAST_ONLY: "true"
+  PORT_FILES: >-
+    messenger/SealFont.java
+    messenger/SealTheme.java
+    ui/SealColorDialog.java
+    messenger/SealAutoReply.java
+    messenger/SealStt.java
+    messenger/SealVoice.java
+    ui/SealGramHubActivity.java
+    ui/SealGramStyleActivity.java
+    ui/SealGramVoiceActivity.java
 
 jobs:
   port:
@@ -34,62 +45,63 @@ jobs:
           fetch-depth: 1
           submodules: recursive
 
-      - name: Port font, theme and color helpers
+      - name: Port SealGram classes
         shell: bash
         run: |
           set -euo pipefail
           src="sealgram-old/TMessagesProj/src/main/java/org/telegram"
           dst="telegram-new/TMessagesProj/src/main/java/org/telegram"
-          for file in messenger/SealFont.java messenger/SealTheme.java ui/SealColorDialog.java; do
+          for file in $PORT_FILES; do
             test -s "$src/$file"
             cp "$src/$file" "$dst/$file"
             echo "Ported: $file"
           done
           test -s "$dst/messenger/SealGram.java"
           test -s "$dst/messenger/SealGramI18n.java"
-          python3 - <<'PY'
-          p = "telegram-new/TMessagesProj/src/main/java/org/telegram/messenger/AndroidUtilities.java"
-          s = open(p, encoding="utf-8").read()
-          sig = "    public static Typeface getTypeface(String assetPath) {\n"
-          hook = "        Typeface sealFont = SealFont.get(assetPath);\n        if (sealFont != null) {\n            return sealFont;\n        }\n"
-          if "SealFont.get(assetPath)" in s:
-              print("Font hook already present")
-          else:
-              if s.count(sig) != 1:
-                  raise SystemExit("getTypeface signature not found exactly once")
-              s = s.replace(sig, sig + hook)
-              open(p, "w", encoding="utf-8").write(s)
-              print("Font hook inserted into AndroidUtilities.getTypeface")
-          PY
+          grep -q "SealFont.get(assetPath)" "$dst/messenger/AndroidUtilities.java"
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
           packages: ''
 
-      - name: Build upstream with ported helper groups
-        working-directory: telegram-new
+      - name: Install SDK packages
         env:
           ANDROID_HOME: /usr/local/lib/android/sdk
           ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
         run: |
           yes | sdkmanager --licenses >/dev/null || true
           sdkmanager "platforms;android-36" "build-tools;36.0.0" "ndk;27.2.12479018" "cmake;3.22.1"
+
+      - name: Fast Java compile check
+        working-directory: telegram-new
+        env:
+          ANDROID_HOME: /usr/local/lib/android/sdk
+          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+        run: |
           chmod +x gradlew
-          ./gradlew --no-daemon --stacktrace :TMessagesProj_App:assembleAfatDebug
+          ./gradlew --no-daemon --stacktrace :TMessagesProj:compileDebugJavaWithJavac
+
+      - name: Full APK build
+        if: env.FAST_ONLY != 'true'
+        working-directory: telegram-new
+        env:
+          ANDROID_HOME: /usr/local/lib/android/sdk
+          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+        run: ./gradlew --no-daemon --stacktrace :TMessagesProj_App:assembleAfatDebug
 
       - name: Publish to port branch
-        if: success()
+        if: env.FAST_ONLY != 'true'
         working-directory: telegram-new
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add TMessagesProj/src/main/java/org/telegram/messenger/SealFont.java \
-                  TMessagesProj/src/main/java/org/telegram/messenger/SealTheme.java \
-                  TMessagesProj/src/main/java/org/telegram/ui/SealColorDialog.java \
-                  TMessagesProj/src/main/java/org/telegram/messenger/AndroidUtilities.java
+          for file in $PORT_FILES; do
+            git add "TMessagesProj/src/main/java/org/telegram/$file"
+          done
+          git add -A TMessagesProj/src
           if git diff --cached --quiet; then
             echo "No port changes to publish."
             exit 0
@@ -98,10 +110,10 @@ jobs:
           git push origin "HEAD:refs/heads/$PORT_BRANCH"
 
       - name: Upload test APK
-        if: success()
+        if: env.FAST_ONLY != 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: telegram-13.1.1-font-theme-smoke-test
+          name: telegram-13.1.1-seal-hub-smoke-test
           path: telegram-new/TMessagesProj_App/build/outputs/apk/**/**/*.apk
           if-no-files-found: warn
           retention-days: 7
