@@ -6839,12 +6839,14 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     @Override
     public void onUserInteraction() {
         super.onUserInteraction();
+        org.telegram.messenger.SealAutoReply.touch();
         voipLaunchedInBackground = false;
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        org.telegram.messenger.SealAutoReply.touchNow();
         isResumed = false;
         pipActivityHandler.onPause();
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 4096);
@@ -7083,6 +7085,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     @Override
     protected void onResume() {
         super.onResume();
+        org.telegram.messenger.SealAutoReply.touchNow();
         isResumed = true;
         pipActivityHandler.onResume();
         if (onResumeStaticCallback != null) {

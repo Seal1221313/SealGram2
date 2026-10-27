@@ -1117,6 +1117,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private ByteBuffer fileBuffer;
     public int recordBufferSize = 1280;
     public int sampleRate = 48000;
+    private SealVoice.Processor sealVoice;
     private int sendAfterDone;
     private boolean sendAfterDoneNotify;
     private int sendAfterDoneScheduleDate;
@@ -1149,6 +1150,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 int len = audioRecorder.read(buffer, buffer.capacity());
                 if (len > 0) {
                     buffer.limit(len);
+                    if (SealVoice.forMessages()) {
+                        try {
+                            if (sealVoice == null) sealVoice = SealVoice.create(sampleRate);
+                            sealVoice.process(buffer, len);
+                        } catch (Throwable ignore) {
+                        }
+                    }
                     double sum = 0;
                     try {
                         long newSamplesCount = samplesCount + len / 2;
@@ -4486,6 +4494,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     private boolean shouldUseAudioRecorderV2(int account) {
+        if (SealVoice.forMessages()) {
+            return false;
+        }
         return SharedSettings.audioRecorderV2Enabled.isSet() ?
             SharedSettings.audioRecorderV2Enabled.get() :
             !MessagesController.getInstance(account).config.audioRecorderV2Disabled.get();

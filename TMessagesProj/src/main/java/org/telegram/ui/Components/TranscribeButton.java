@@ -223,6 +223,14 @@ public class TranscribeButton {
         }
         pressed = false;
         if (processClick) {
+            MessageObject localVoice = parent.getMessageObject();
+            if (toOpen && localVoice != null && localVoice.isVoice() && org.telegram.messenger.SealGram.pref("stt_inline_button", true)) {
+                setLoading(true, true);
+                if (org.telegram.messenger.SealStt.recognizeInline(parent.getContext(), localVoice, () -> setLoading(false, true))) {
+                    return;
+                }
+                setLoading(false, true);
+            }
             if (!premium && toOpen) {
                 if (canTranscribeTrial(parent.getMessageObject()) || parent.getMessageObject() != null && parent.getMessageObject().messageOwner != null && !TextUtils.isEmpty(parent.getMessageObject().messageOwner.voiceTranscription)) {
                     transcribePressed(parent.getMessageObject(), toOpen, parent.getDelegate());
