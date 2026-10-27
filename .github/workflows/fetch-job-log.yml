@@ -1,11 +1,11 @@
-name: Fetch job log to ci-logs
+name: Fetch run logs to ci-logs
 
 on:
   push:
     branches:
       - upgrade/telegram-13.1.1
     paths:
-      - ".github/workflows/fetch-job-log.yml"
+      - "ci-request/run_id.txt"
 
 permissions:
   contents: write
@@ -15,22 +15,36 @@ jobs:
   fetch:
     runs-on: ubuntu-24.04
     steps:
+      - name: Checkout request
+        uses: actions/checkout@v4
+        with:
+          ref: upgrade/telegram-13.1.1
+          path: req
+          fetch-depth: 1
       - name: Checkout ci-logs
         uses: actions/checkout@v4
         with:
           ref: ci-logs
-      - name: Download job log
+          path: logs
+      - name: Download logs
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          mkdir -p run-40396566539
-          curl -sSL -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/jobs/121831057675/logs" -o run-40396566539/job.txt
-          wc -l run-40396566539/job.txt
-      - name: Commit log
+          RID="$(tr -d '[:space:]' < req/ci-request/run_id.txt)"
+          mkdir -p "logs/run-$RID"
+          api="https://api.github.com/repos/${{ github.repository }}"
+          curl -sSL -H "Authorization: Bearer $GH_TOKEN" "$api/actions/runs/$RID/jobs" -o "logs/run-$RID/jobs.json"
+          for jid in $(python3 -c "import json,sys;print(' '.join(str(j['id']) for j in json.load(open('logs/run-$RID/jobs.json'))['jobs']))"); do
+            curl -sSL -H "Authorization: Bearer $GH_TOKEN" "$api/actions/jobs/$jid/logs" -o "logs/run-$RID/job-$jid.txt"
+            grep -n -E "error:|warning: \[|What went wrong|FAILED|Execution failed|Process completed with exit code" "logs/run-$RID/job-$jid.txt" | cut -c1-400 | head -150 > "logs/run-$RID/errors-$jid.txt" || true
+          done
+          ls -la "logs/run-$RID"
+      - name: Commit logs
+        working-directory: logs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add run-40396566539
-          git commit -m "Add job log for run 40396566539"
+          git add -A
+          git commit -m "Add logs for requested run" || exit 0
           git push origin HEAD:ci-logs
